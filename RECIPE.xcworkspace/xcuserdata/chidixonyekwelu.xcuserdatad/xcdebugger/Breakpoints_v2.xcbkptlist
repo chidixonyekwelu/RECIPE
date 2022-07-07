@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9B0D14B8-BABC-41DB-9907-94EF414464A0"
+            uuid = "3BCDC4D8-7E97-4EDA-9978-391226497FE2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RECIPE/LoginViewController.m"
+            filePath = "Pods/Parse/Parse/Parse/PFObject.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "usersPassword"
-            landmarkType = "24">
+            startingLineNumber = "773"
+            endingLineNumber = "773"
+            landmarkName = "+_assertValidInstanceClassName:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

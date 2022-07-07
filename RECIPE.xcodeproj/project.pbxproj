@@ -22,6 +22,8 @@
 		EE63DD35287629240046554E /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD34287629240046554E /* HomeTimelineViewController.m */; };
 		EE63DD38287629D40046554E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD37287629D40046554E /* SettingsViewController.m */; };
 		EE63DD3B287641B60046554E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD3A287641B60046554E /* LoginViewController.m */; };
+		EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */; };
+		EE63DD4128774BB20046554E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD4028774BB20046554E /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,10 @@
 		EE63DD37287629D40046554E /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		EE63DD39287641B60046554E /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		EE63DD3A287641B60046554E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeDetailsViewController.h; sourceTree = "<group>"; };
+		EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailsViewController.m; sourceTree = "<group>"; };
+		EE63DD3F28774BB20046554E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		EE63DD4028774BB20046554E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,10 @@
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
 				EE63DD04287628260046554E /* Main.storyboard */,
+				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
+				EE63DD4028774BB20046554E /* ProfileViewController.m */,
+				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
+				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
 				EE63DD39287641B60046554E /* LoginViewController.h */,
 				EE63DD3A287641B60046554E /* LoginViewController.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
@@ -426,8 +436,10 @@
 			files = (
 				EE63DCFD287628260046554E /* AppDelegate.m in Sources */,
 				EE63DD35287629240046554E /* HomeTimelineViewController.m in Sources */,
+				EE63DD4128774BB20046554E /* ProfileViewController.m in Sources */,
 				EE63DD3B287641B60046554E /* LoginViewController.m in Sources */,
 				EE63DD38287629D40046554E /* SettingsViewController.m in Sources */,
+				EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */,
 				EE63DD0E287628270046554E /* main.m in Sources */,
 				EE63DD00287628260046554E /* SceneDelegate.m in Sources */,
 			);
