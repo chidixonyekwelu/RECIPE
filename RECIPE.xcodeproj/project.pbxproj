@@ -24,6 +24,9 @@
 		EE63DD3B287641B60046554E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD3A287641B60046554E /* LoginViewController.m */; };
 		EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */; };
 		EE63DD4128774BB20046554E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD4028774BB20046554E /* ProfileViewController.m */; };
+		EE63DD442877B4850046554E /* RecipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD432877B4850046554E /* RecipeCell.m */; };
+		EE63DD472877B7B60046554E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD462877B7B60046554E /* RegisterViewController.m */; };
+		EE63DD4A2877B8310046554E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD492877B8310046554E /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,12 @@
 		EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailsViewController.m; sourceTree = "<group>"; };
 		EE63DD3F28774BB20046554E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		EE63DD4028774BB20046554E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		EE63DD422877B4850046554E /* RecipeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeCell.h; sourceTree = "<group>"; };
+		EE63DD432877B4850046554E /* RecipeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeCell.m; sourceTree = "<group>"; };
+		EE63DD452877B7B60046554E /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		EE63DD462877B7B60046554E /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		EE63DD482877B8310046554E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EE63DD492877B8310046554E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,12 +174,18 @@
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
 				EE63DD04287628260046554E /* Main.storyboard */,
+				EE63DD422877B4850046554E /* RecipeCell.h */,
+				EE63DD432877B4850046554E /* RecipeCell.m */,
 				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
 				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
 				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
 				EE63DD39287641B60046554E /* LoginViewController.h */,
 				EE63DD3A287641B60046554E /* LoginViewController.m */,
+				EE63DD462877B7B60046554E /* RegisterViewController.m */,
+				EE63DD452877B7B60046554E /* RegisterViewController.h */,
+				EE63DD482877B8310046554E /* ViewController.h */,
+				EE63DD492877B8310046554E /* ViewController.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,
@@ -434,10 +449,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE63DD442877B4850046554E /* RecipeCell.m in Sources */,
 				EE63DCFD287628260046554E /* AppDelegate.m in Sources */,
 				EE63DD35287629240046554E /* HomeTimelineViewController.m in Sources */,
 				EE63DD4128774BB20046554E /* ProfileViewController.m in Sources */,
 				EE63DD3B287641B60046554E /* LoginViewController.m in Sources */,
+				EE63DD4A2877B8310046554E /* ViewController.m in Sources */,
+				EE63DD472877B7B60046554E /* RegisterViewController.m in Sources */,
 				EE63DD38287629D40046554E /* SettingsViewController.m in Sources */,
 				EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */,
 				EE63DD0E287628270046554E /* main.m in Sources */,

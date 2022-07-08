@@ -1,20 +1,17 @@
 //
-//  RecipeDetailsViewController.m
+//  ViewController.m
 //  RECIPE
 //
 //  Created by Chidi Onyekwelu on 7/7/22.
 //
 
-#import "RecipeDetailsViewController.h"
+#import "ViewController.h"
 
-@interface RecipeDetailsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *recipedescription;
-@property (weak, nonatomic) IBOutlet UILabel *recipename;
-@property (weak, nonatomic) IBOutlet UIImageView *recipeimage;
+@interface ViewController ()
 
 @end
 
-@implementation RecipeDetailsViewController
+@implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
