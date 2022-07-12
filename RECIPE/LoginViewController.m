@@ -10,32 +10,30 @@
 #import "SceneDelegate.h"
 
 @interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *userspassword;
-@property (weak, nonatomic) IBOutlet UITextField *usersusername;
-
-
-
+@property (weak, nonatomic) IBOutlet UITextField *usersPassword;
+@property (weak, nonatomic) IBOutlet UITextField *usersUsername;
 @end
 
 @implementation LoginViewController
-- (IBAction)signinbutton:(id)sender {
-    NSString *username = self.usersusername.text;
-    NSString *password = self.userspassword.text;
+- (IBAction)signInButton:(id)sender {
+    NSString *username = self.usersUsername.text;
+    NSString *password = self.usersPassword.text;
     
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
         } else {
             NSLog(@"User logged in successfully");
-            [self showhometimeline];
+            [self showHomeTimeline];
         }}];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void) showhometimeline {
+- (void) showHomeTimeline {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTimelineViewController"];
     SceneDelegate *mySceneDelegate = (SceneDelegate *) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
@@ -65,6 +63,7 @@
          NSLog(@"User log in failed: %@", error.localizedDescription);
      } else {
          NSLog(@"User logged in successfully");
+         [self showHomeTimeline];
      }}];
  */
 

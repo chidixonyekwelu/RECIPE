@@ -6,10 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipe.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecipeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *recipePicture;
+@property (weak, nonatomic) IBOutlet UILabel *recipeDescription;
+@property (weak, nonatomic) IBOutlet UILabel *recipeName;
+@property (strong, nonatomic) Recipe *thisRecipe;
 
 @end
 

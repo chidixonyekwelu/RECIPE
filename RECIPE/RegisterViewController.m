@@ -9,19 +9,19 @@
 #import "Parse/Parse.h"
 
 @interface RegisterViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *userspassword;
-@property (weak, nonatomic) IBOutlet UITextField *usersusername;
+@property (weak, nonatomic) IBOutlet UITextField *usersPassword;
+@property (weak, nonatomic) IBOutlet UITextField *usersUsername;
 
 @end
 
 @implementation RegisterViewController
-- (IBAction)signupbutton:(id)sender {
+- (IBAction)signUpButton:(id)sender {
     // initialize a user object
     PFUser *newUser = [PFUser user];
     
     // set user properties
-    newUser.username = self.usersusername.text;
-    newUser.password = self.userspassword.text;
+    newUser.username = self.usersUsername.text;
+    newUser.password = self.usersPassword.text;
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
