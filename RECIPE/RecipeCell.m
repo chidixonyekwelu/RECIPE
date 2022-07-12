@@ -20,15 +20,5 @@
     // Configure the view for the selected state
 }
 
-/*
-- (void) showData {
-    self.recipeName.text = self.recipe.textname;
-    self.recipeDescription.text = self.recipe.text;
-    NSString *URLString = self.recipe.recipePicture;
-    NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    self.recipePicture.image = [UIImage imageWithData:urlData];
-    
-*/
 
 @end

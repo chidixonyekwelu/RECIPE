@@ -12,10 +12,11 @@
 #import "SceneDelegate.h"
 #import "ViewController.h"
 #import "Parse/Parse.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface HomeTimelineViewController () <UITableViewDataSource>
+@interface HomeTimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
+@property (nonatomic, strong) NSArray *arrayOfRecipes;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -32,21 +33,29 @@
     }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self fetchRecipes];
+    [self.tableView reloadData];
     // Do any additional setup after loading the view.
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfRecipes.count;
 }
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Recipe" forIndexPath:indexPath];
-    Recipe *recipe = self.arrayOfRecipes[indexPath.row];
-    cell.recipeName.text =
-    cell.recipeDescription.text
+    RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
+    NSDictionary *recipe = self.arrayOfRecipes[indexPath.row];
+    cell.recipeName.text = recipe[@"strMeal"];
+    cell.recipeDescription.text = recipe[@"strInstructions"];
+    NSString *URLString = recipe[@"strMealThumb"];
+    NSURL *url = [NSURL URLWithString:URLString];
+    [cell.recipePicture setImageWithURL:url];
+    return cell;
+ 
 }
-*/
+
 
 - (void) fetchRecipes {
     NSURL *url = [NSURL URLWithString:@"https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"];
@@ -58,10 +67,13 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
-               NSLog(@"%@", dataDictionary);
+               self.arrayOfRecipes = dataDictionary[@"meals"];
+               NSLog(@"%@", self.arrayOfRecipes);
            }
+        [self.tableView reloadData];
+
        }];
+    
     [task resume];
 }
 

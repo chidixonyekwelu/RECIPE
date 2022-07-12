@@ -7,6 +7,7 @@ target 'RECIPE' do
 
   # Pods for RECIPE
   pod 'Parse'
+  pod 'AFNetworking'
 
   target 'RECIPETests' do
     inherit! :search_paths
