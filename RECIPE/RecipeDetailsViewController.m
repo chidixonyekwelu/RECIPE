@@ -6,6 +6,7 @@
 //
 
 #import "RecipeDetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface RecipeDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *recipedescription;
@@ -18,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.recipename.text = self.arrayOfRecipes[@"strMeal"];
+    self.recipedescription.text = self.arrayOfRecipes[@"strInstructions"];
+    NSString *URLString = _arrayOfRecipes[@"strMealThumb"];
+    NSURL *url = [NSURL URLWithString:URLString];
+    [self.recipeimage setImageWithURL:url];
     // Do any additional setup after loading the view.
 }
 

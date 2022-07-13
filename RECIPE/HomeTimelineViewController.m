@@ -15,8 +15,10 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface HomeTimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *arrayOfRecipes;
+@property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
+@property (nonatomic, strong) NSMutableArray *arrayOfCategories;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -35,9 +37,22 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self fetchRecipes];
+    int i;
+    for (i = 0; i < 10;i++){
+        NSLog(@"meals");
+        [self fetchRecipes];
+    }
+    
     [self.tableView reloadData];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchRecipes)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
     // Do any additional setup after loading the view.
+    
+    // API call to fetch the categories
+    [self fetchCategories];
+    // Save this info
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -58,7 +73,40 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"];
+    NSURL *url = [NSURL URLWithString:@"https://www.themealdb.com/api/json/v1/1/random.php"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@", [error localizedDescription]);
+               UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No connection"
+                                              message:@"Network Request Failed"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+               UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault
+                  handler:^(UIAlertAction * action) {}];
+                
+               [alert addAction:defaultAction];
+               [self presentViewController:alert animated:YES completion:nil];
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               [self.activityIndicator stopAnimating];
+               if (self.arrayOfRecipes!= nil){ [self.arrayOfRecipes addObject:dataDictionary[@"meals"][0]];
+                   NSLog(@"%@", self.arrayOfRecipes);
+               }
+               else {
+                   self.arrayOfRecipes = dataDictionary[@"meals"];               }
+               NSLog(@"%@", self.arrayOfRecipes);
+           }
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+       }];
+    
+    [task resume];
+}
+
+- (void) fetchCategories {NSURL *url = [NSURL URLWithString:@"https://www.themealdb.com/api/json/v1/1/categories.php"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -67,16 +115,38 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               self.arrayOfRecipes = dataDictionary[@"meals"];
-               NSLog(@"%@", self.arrayOfRecipes);
+               if (self.arrayOfCategories!= nil){ [self.arrayOfCategories addObject:dataDictionary[@"catergories"][0]];
+                   NSLog(@"%@", self.arrayOfCategories);
+               }
+               else {
+                   self.arrayOfCategories = dataDictionary[@"categories"];               }
+               NSLog(@"%@", self.arrayOfCategories);
+
            }
-        [self.tableView reloadData];
-
        }];
-    
     [task resume];
+    
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//     Get the new view controller using
+    UITableViewCell *MyCell = sender;
+    NSIndexPath *IndexPath = [self.tableView indexPathForCell:MyCell];
+    RecipeDetailsViewController *RecipeDetailVC = [segue destinationViewController];
+    // TODO: pass along the category info too
+    RecipeDetailVC.arrayOfRecipes = self.arrayOfRecipes[IndexPath.row];
+    // Set a property for the category
+    
+//     Pass the selected object to the new view controller.
+    // if check for the category
+    // if strCatgeory = str
+    
+    
+    // If the meal cateory str is equal to the category string
+    // Categories are in an array, so you'll have to loop through to find it
+    // pass this info to the next screen
+    // else - don't show description
+    
+}
 
 
 @end
