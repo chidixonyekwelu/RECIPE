@@ -10,9 +10,9 @@
 
 @interface RecipeDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *recipeIngredients;
-@property (weak, nonatomic) IBOutlet UILabel *recipedescription;
-@property (weak, nonatomic) IBOutlet UILabel *recipename;
-@property (weak, nonatomic) IBOutlet UIImageView *recipeimage;
+@property (weak, nonatomic) IBOutlet UILabel *recipeInstructions;
+@property (weak, nonatomic) IBOutlet UILabel *recipeName;
+@property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
 @property (nonatomic, strong) NSArray *arrayOfIngredients;
 
 @end
@@ -23,12 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.recipename.text = self.arrayOfRecipes[@"strMeal"];
-    self.recipedescription.text = self.arrayOfRecipes[@"strInstructions"];
+    self.recipeName.text = self.arrayOfRecipes[@"strMeal"];
+    self.recipeInstructions.text = self.arrayOfRecipes[@"strInstructions"];
     
     NSString *URLString = _arrayOfRecipes[@"strMealThumb"];
     NSURL *url = [NSURL URLWithString:URLString];
-    [self.recipeimage setImageWithURL:url];
+    [self.recipeImage setImageWithURL:url];
     isthere = true;
     
     int i = 1;
