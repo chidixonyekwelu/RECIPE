@@ -41,7 +41,7 @@
         NSLog(@"meals");
         [self fetchRecipes];
     }
-    //[self fetchPrices];
+    [self fetchPrices];
     [self.tableView reloadData];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -107,7 +107,7 @@
 
 - (void) fetchPrices {
     
-    NSURL *url = [NSURL URLWithString:@"eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vYXBpLmtyb2dlci5jb20vdjEvLndlbGwta25vd24vandrcy5qc29uIiwia2lkIjoiWjRGZDNtc2tJSDg4aXJ0N0xCNWM2Zz09IiwidHlwIjoiSldUIn0.eyJhdWQiOiJjaGlkaS1mMmE5ZDdjOWJkNGEwOGUzMzk1ZGU2YWZmYmFjYWRlMzUzNjcyNzcyMjk3NDQ2MzU3NDIiLCJleHAiOjE2NTc4MTgwNTMsImlhdCI6MTY1NzgxNjI0OCwiaXNzIjoiYXBpLmtyb2dlci5jb20iLCJzdWIiOiJhNDMyMDIzMy0wYTk3LTVkOWUtYjA5Ni05MTc2MDZhYThkZGIiLCJzY29wZSI6IiIsImF1dGhBdCI6MTY1NzgxNjI1MzQ2MTE2OTE5OCwiYXpwIjoiY2hpZGktZjJhOWQ3YzliZDRhMDhlMzM5NWRlNmFmZmJhY2FkZTM1MzY3Mjc3MjI5NzQ0NjM1NzQyIn0.BqRZJ1LnIBqaor4tfRbqxZ8Ya5OtNiWgrNneE6b8oXHgBd0JBPRWrXBNwySDc71vlwpYUgcoAXywkLW5rrnPOMexkaU-MtgNcGMJUEcregie83xy93G-JXhBbHkUWv__oz50Ik5XP6fpaiZretnIy00bHUscjlMrS11R8ixP6iToO_e7gVDKeX9Oo3xgrn1FC9QggvmYJSJQcpbYXyR52dIr4bg9qSClLYETX4rvu3KGev12hf4Q-5x11Zk-bWk0QvFDnxG3hgdkQ_VVMmaUCQPAPd-S1WaEYq-_ItWLzqzzZ0SZijlMQAVsLBTwdQ0EMKhkk9WNWmnXAk90newpyw"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/716429/information?apiKey=c594f02a1f614c2b804f2132270b07a3c594f02a1f614c2b804f2132270b07a3&blueberries=true"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
