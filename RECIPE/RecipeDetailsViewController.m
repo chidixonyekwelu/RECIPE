@@ -9,23 +9,48 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface RecipeDetailsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *recipeIngredients;
 @property (weak, nonatomic) IBOutlet UILabel *recipedescription;
 @property (weak, nonatomic) IBOutlet UILabel *recipename;
 @property (weak, nonatomic) IBOutlet UIImageView *recipeimage;
+@property (nonatomic, strong) NSArray *arrayOfIngredients;
 
 @end
 
-@implementation RecipeDetailsViewController
+@implementation RecipeDetailsViewController {
+    BOOL isthere;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.recipename.text = self.arrayOfRecipes[@"strMeal"];
     self.recipedescription.text = self.arrayOfRecipes[@"strInstructions"];
+    
     NSString *URLString = _arrayOfRecipes[@"strMealThumb"];
     NSURL *url = [NSURL URLWithString:URLString];
     [self.recipeimage setImageWithURL:url];
+    isthere = true;
+    
+    int i = 1;
+    NSString *indexer;
+    NSString *ingredientLabelString = @"    Ingredients:  \n";
+    
+    while (isthere){
+        indexer = [NSString stringWithFormat:@"strIngredient%i", i];
+        NSString *nextone = [NSString stringWithFormat:@"strIngredient%i", i+1];
+        NSLog(@"🥶🥶🥶🥶🥶%@",self.arrayOfRecipes[indexer]);
+        
+       ingredientLabelString = [ingredientLabelString stringByAppendingString:[NSString stringWithFormat:@"    %i. %@ \n", i, self.arrayOfRecipes[indexer]]];
+        if ([self.arrayOfRecipes objectForKey:nextone] == nil) {
+            isthere = false;
+        }
+        i++;
+    }
+    NSLog(@"😡😡😡😡😡😡😡😡%@", ingredientLabelString);
+    self.recipeIngredients.text = ingredientLabelString;
     // Do any additional setup after loading the view.
 }
+
 
 /*
 #pragma mark - Navigation
