@@ -24,7 +24,6 @@
 @implementation HomeTimelineViewController
 - (IBAction)logOutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nilUIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"viewController"];
         SceneDelegate *mySceneDelegate = (SceneDelegate *) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
@@ -47,11 +46,8 @@
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
-    // Do any additional setup after loading the view.
     
-    // API call to fetch the categories
-  //  [self fetchCategories];
-    // Save this info
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -91,7 +87,8 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                [self.activityIndicator stopAnimating];
-               if (self.arrayOfRecipes!= nil){ [self.arrayOfRecipes addObject:dataDictionary[@"meals"][0]];
+               if (self.arrayOfRecipes!= nil)
+               { [self.arrayOfRecipes addObject:dataDictionary[@"meals"][0]];
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
@@ -124,23 +121,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //     Get the new view controller using
-    UITableViewCell *MyCell = sender;
-    NSIndexPath *IndexPath = [self.tableView indexPathForCell:MyCell];
-    RecipeDetailsViewController *RecipeDetailVC = [segue destinationViewController];
+    UITableViewCell *myCell = sender;
+    NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
+    RecipeDetailsViewController *recipeDetailVC = [segue destinationViewController];
     // TODO: pass along the category info too
-    RecipeDetailVC.arrayOfRecipes = self.arrayOfRecipes[IndexPath.row];
+    recipeDetailVC.arrayOfRecipes = self.arrayOfRecipes[IndexPath.row];
    
 }
 
 
 
 @end
-/*
-self.tableView.delegate = self;
-self.tableView.dataSource = self;
-[self.tableView reloadData];
-self.tableView.rowHeight = UITableViewAutomaticDimension;
-*/
 
 
 
