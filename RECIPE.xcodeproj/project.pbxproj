@@ -11,7 +11,6 @@
 		7798C650BF6A938AF1A03BAA /* Pods_RECIPETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1E215F2F0EB232BEF1B0A4 /* Pods_RECIPETests.framework */; };
 		9171E665B78FCFCF60B7EEF0 /* Pods_RECIPE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ABD2A745E028FC3C8230F7A /* Pods_RECIPE.framework */; };
 		EE0A8EC72882133C00BBD9BA /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE0A8EC62882133C00BBD9BA /* Keys.plist */; };
-		EE0A8ECA2882164B00BBD9BA /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A8EC92882164B00BBD9BA /* APIManager.m */; };
 		EE63DCFD287628260046554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFC287628260046554E /* AppDelegate.m */; };
 		EE63DD00287628260046554E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFF287628260046554E /* SceneDelegate.m */; };
 		EE63DD06287628260046554E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE63DD04287628260046554E /* Main.storyboard */; };
@@ -60,8 +59,6 @@
 		E1DA254A2DA5D8B1E58565BF /* Pods-RECIPETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RECIPETests.release.xcconfig"; path = "Target Support Files/Pods-RECIPETests/Pods-RECIPETests.release.xcconfig"; sourceTree = "<group>"; };
 		ECC99DF746F6540180C3B09E /* Pods-RECIPE-RECIPEUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RECIPE-RECIPEUITests.debug.xcconfig"; path = "Target Support Files/Pods-RECIPE-RECIPEUITests/Pods-RECIPE-RECIPEUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0A8EC62882133C00BBD9BA /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		EE0A8EC82882164B00BBD9BA /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
-		EE0A8EC92882164B00BBD9BA /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		EE63DCF8287628260046554E /* RECIPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RECIPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63DCFB287628260046554E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE63DCFC287628260046554E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -148,6 +145,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EE578569288246140057C2B7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
+				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
+				EE63DD37287629D40046554E /* SettingsViewController.m */,
+				EE63DD4028774BB20046554E /* ProfileViewController.m */,
+				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
+				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
+				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
+				EE63DD492877B8310046554E /* ViewController.m */,
+				EE63DD39287641B60046554E /* LoginViewController.h */,
+				EE63DD3A287641B60046554E /* LoginViewController.m */,
+				EE63DD452877B7B60046554E /* RegisterViewController.h */,
+				EE63DD462877B7B60046554E /* RegisterViewController.m */,
+				EE63DD482877B8310046554E /* ViewController.h */,
+				EE63DD36287629D40046554E /* SettingsViewController.h */,
+				EE57856A288246790057C2B7 /* Models */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EE57856A288246790057C2B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE63DD4F287CC55A0046554E /* Recipe.m */,
+				EE63DD4E287CC55A0046554E /* Recipe.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EE63DCEF287628260046554E = {
 			isa = PBXGroup;
 			children = (
@@ -177,28 +205,11 @@
 				EE63DCFC287628260046554E /* AppDelegate.m */,
 				EE63DCFE287628260046554E /* SceneDelegate.h */,
 				EE63DCFF287628260046554E /* SceneDelegate.m */,
-				EE63DD36287629D40046554E /* SettingsViewController.h */,
-				EE63DD37287629D40046554E /* SettingsViewController.m */,
-				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
-				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
-				EE0A8EC82882164B00BBD9BA /* APIManager.h */,
-				EE0A8EC92882164B00BBD9BA /* APIManager.m */,
+				EE578569288246140057C2B7 /* View Controllers */,
 				EE0A8EC62882133C00BBD9BA /* Keys.plist */,
 				EE63DD04287628260046554E /* Main.storyboard */,
 				EE63DD422877B4850046554E /* RecipeCell.h */,
 				EE63DD432877B4850046554E /* RecipeCell.m */,
-				EE63DD4E287CC55A0046554E /* Recipe.h */,
-				EE63DD4F287CC55A0046554E /* Recipe.m */,
-				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
-				EE63DD4028774BB20046554E /* ProfileViewController.m */,
-				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
-				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
-				EE63DD39287641B60046554E /* LoginViewController.h */,
-				EE63DD3A287641B60046554E /* LoginViewController.m */,
-				EE63DD462877B7B60046554E /* RegisterViewController.m */,
-				EE63DD452877B7B60046554E /* RegisterViewController.h */,
-				EE63DD482877B8310046554E /* ViewController.h */,
-				EE63DD492877B8310046554E /* ViewController.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,
@@ -472,7 +483,6 @@
 				EE63DD472877B7B60046554E /* RegisterViewController.m in Sources */,
 				EE63DD50287CC55B0046554E /* Recipe.m in Sources */,
 				EE63DD38287629D40046554E /* SettingsViewController.m in Sources */,
-				EE0A8ECA2882164B00BBD9BA /* APIManager.m in Sources */,
 				EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */,
 				EE63DD0E287628270046554E /* main.m in Sources */,
 				EE63DD00287628260046554E /* SceneDelegate.m in Sources */,
