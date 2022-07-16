@@ -23,10 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.recipeName.text = self.arrayOfRecipes[@"strMeal"];
-    self.recipeInstructions.text = self.arrayOfRecipes[@"strInstructions"];
+    self.recipeName.text = self.arrayOfRecipes[@"title"];
+    self.recipeInstructions.text = self.arrayOfRecipes[@"instructions"];
     
-    NSString *URLString = _arrayOfRecipes[@"strMealThumb"];
+    NSString *URLString = _arrayOfRecipes[@"image"];
     NSURL *url = [NSURL URLWithString:URLString];
     [self.recipeImage setImageWithURL:url];
     isthere = true;
@@ -36,8 +36,8 @@
     NSString *ingredientLabelString = @"    Ingredients:  \n";
     
     while (isthere){
-        indexer = [NSString stringWithFormat:@"strIngredient%i", i];
-        NSString *nextone = [NSString stringWithFormat:@"strIngredient%i", i+1];
+        indexer = [NSString stringWithFormat:@"extendedIngredients%i", i];
+        NSString *nextone = [NSString stringWithFormat:@"extendedIngredients%i", i+1];
         NSLog(@"🥶🥶🥶🥶🥶%@",self.arrayOfRecipes[indexer]);
         
        ingredientLabelString = [ingredientLabelString stringByAppendingString:[NSString stringWithFormat:@"    %i. %@ \n", i, self.arrayOfRecipes[indexer]]];

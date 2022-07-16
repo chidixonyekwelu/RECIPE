@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wb6-fg-FLE">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="viewController" id="jgd-dB-r2w" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zhv-hD-Ylj" colorLabel="IBBuiltInLabel-Green">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tj8-ts-ozf">
@@ -87,7 +88,7 @@
             <objects>
                 <viewController id="qmv-9U-kIs" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f4r-If-Fjc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="c pictire" translatesAutoresizingMaskIntoConstraints="NO" id="KOr-lc-e2m">
@@ -145,7 +146,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeTimelineViewController" id="JrG-Po-7Qg" customClass="HomeTimelineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcC-Mu-Vu3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Ui-Wh-Q0K">
@@ -197,12 +198,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWl-kc-w1m">
-                                <rect key="frame" x="273" y="38" width="131" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass" catalog="system" title="Search"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0f-PI-kEE">
                                 <rect key="frame" x="12" y="44" width="84" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -222,6 +217,11 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Filter"/>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="Search" translatesAutoresizingMaskIntoConstraints="NO" id="gxO-bM-xd0">
+                                <rect key="frame" x="264" y="30" width="130" height="51"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g8B-p1-fq0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -229,6 +229,7 @@
                     <navigationItem key="navigationItem" id="t3h-zq-eOU"/>
                     <connections>
                         <outlet property="activityIndicator" destination="oQd-KQ-UR7" id="OV8-cU-wrm"/>
+                        <outlet property="searchBar" destination="gxO-bM-xd0" id="xWA-Hd-n04"/>
                         <outlet property="tableView" destination="0Ui-Wh-Q0K" id="A3j-P5-kpg"/>
                     </connections>
                 </viewController>
@@ -241,7 +242,7 @@
             <objects>
                 <viewController id="8ie-2B-yfA" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SvT-4B-6X4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="LgK-ZS-NPa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,30 +257,30 @@
             <objects>
                 <viewController id="Vok-TK-Yd1" customClass="RecipeDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MOq-Ku-VyM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HzW-9J-lnh">
-                                <rect key="frame" x="11" y="20" width="134" height="114"/>
+                                <rect key="frame" x="11" y="64" width="134" height="114"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="114" id="hRp-lc-x33"/>
                                     <constraint firstAttribute="width" constant="134" id="wAE-xh-zfO"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fce-7J-6Hq">
-                                <rect key="frame" x="155" y="10" width="435" height="20.5"/>
+                                <rect key="frame" x="155" y="54" width="249" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaK-00-zEB">
-                                <rect key="frame" x="155" y="40.5" width="425" height="20.5"/>
+                                <rect key="frame" x="155" y="84.5" width="239" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-2u-2Yn">
-                                <rect key="frame" x="10" y="71" width="580" height="499"/>
+                                <rect key="frame" x="10" y="115" width="394" height="717"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -306,20 +307,20 @@
                     <connections>
                         <outlet property="recipeImage" destination="HzW-9J-lnh" id="v3v-dI-IHt"/>
                         <outlet property="recipeIngredients" destination="Phd-2u-2Yn" id="c12-0m-FOv"/>
-                        <outlet property="recipeInstructions" destination="UaK-00-zEB" id="bqQ-uo-d1Y"/>
                         <outlet property="recipeName" destination="fce-7J-6Hq" id="lIV-h1-ptj"/>
+                        <outlet property="recipePrice" destination="UaK-00-zEB" id="bqQ-uo-d1Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MA-fd-Gfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3000.0000000000005" y="170.75892857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="MtG-os-Ob0">
             <objects>
-                <viewController id="FyV-gx-zEY" sceneMemberID="viewController">
+                <viewController id="FyV-gx-zEY" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fWI-Z0-d5R">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HkQ-p4-QFw">
@@ -352,7 +353,7 @@
             <objects>
                 <viewController id="zLu-3I-N55" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vNV-D2-hmB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RECIPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrf-7N-eOg">
@@ -412,7 +413,6 @@
     <resources>
         <image name="c pictire" width="300" height="245"/>
         <image name="ingredients pic" width="306" height="153.5"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="picture" width="600" height="314"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

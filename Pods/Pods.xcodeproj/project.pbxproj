@@ -839,7 +839,7 @@
 		9C1DF2577A0B10B56C836E3AB80E828E /* PFSQLiteStatement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFSQLiteStatement.h; path = Parse/Parse/Internal/LocalDataStore/SQLite/PFSQLiteStatement.h; sourceTree = "<group>"; };
 		9C787E61C3EC09ECD3C3392C1B4D3437 /* Pods-RECIPE-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RECIPE-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9C81F63DB36D5293AFBC245B2929EFA3 /* PFPin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFPin.h; path = Parse/Parse/Internal/LocalDataStore/Pin/PFPin.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		9DB25CBD3CE97D0C86B14F758AA68E10 /* PFPurchase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFPurchase.h; path = Parse/Parse/PFPurchase.h; sourceTree = "<group>"; };
 		9E1B3271DC7EED9125DA85842FB49714 /* PFQueryConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFQueryConstants.m; path = Parse/Parse/Internal/Query/PFQueryConstants.m; sourceTree = "<group>"; };
 		9E3351328F10EE68A07BC3E6BF4AB78E /* PFQueryConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFQueryConstants.h; path = Parse/Parse/Internal/Query/PFQueryConstants.h; sourceTree = "<group>"; };
@@ -950,7 +950,7 @@
 		DF06A402D8C64D0271E87E0528703B9A /* Pods-RECIPE-RECIPEUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RECIPE-RECIPEUITests-dummy.m"; sourceTree = "<group>"; };
 		DF9F1FD30D793291F4E449B582B24FDA /* PFPinningEventuallyQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFPinningEventuallyQueue.m; path = Parse/Parse/Internal/PFPinningEventuallyQueue.m; sourceTree = "<group>"; };
 		DFACCC1EE602A9426C2D42318F4C6786 /* PFObjectSubclassingController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFObjectSubclassingController.h; path = Parse/Parse/Internal/Object/Subclassing/PFObjectSubclassingController.h; sourceTree = "<group>"; };
-		E09603B223646C27CF1CD01CF56C1E70 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = Parse/Parse/Resources/en.lproj; sourceTree = "<group>"; };
+		E09603B223646C27CF1CD01CF56C1E70 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = Parse/Parse/Resources/en.lproj; sourceTree = "<group>"; };
 		E11770D1FAF20534422B19AA403A41C5 /* BFTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFTask.m; path = Bolts/Common/BFTask.m; sourceTree = "<group>"; };
 		E125E7CFD52EC78685B9F89B83E8E0A0 /* PFCurrentInstallationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFCurrentInstallationController.m; path = Parse/Parse/Internal/Installation/CurrentInstallationController/PFCurrentInstallationController.m; sourceTree = "<group>"; };
 		E228797053A45D687961584E148A6BF6 /* PFRelation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFRelation.h; path = Parse/Parse/PFRelation.h; sourceTree = "<group>"; };
@@ -1178,7 +1178,6 @@
 				6D252977882464A18DFB4EB849CE02C6 /* Support Files */,
 				39F3353801D214DADE2D92F1C44184B9 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1594,7 +1593,6 @@
 				3FBEE96A025FEFD8F282F5E5E2C6D7E2 /* Core */,
 				264AC742E053E2B9AD45FC6DB6E43848 /* Support Files */,
 			);
-			name = Parse;
 			path = Parse;
 			sourceTree = "<group>";
 		};
@@ -1764,7 +1762,6 @@
 				868ED149B1F79B14974BA9A17576B77D /* Support Files */,
 				3E3C463B8C2258926D9F8BFEEF22D6B4 /* Tasks */,
 			);
-			name = Bolts;
 			path = Bolts;
 			sourceTree = "<group>";
 		};
