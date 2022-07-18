@@ -36,13 +36,14 @@
     }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    int i;
-//    for (i = 0; i < 10;i++){
+    int i;
+    for (i = 0; i < 10;i++){
         NSLog(@"recipes");
         [self fetchRecipes];
-//    }
+    }
 
     self.tableView.delegate =self;
+    self.tableView.dataSource = self;
     [self.tableView reloadData];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -60,10 +61,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
-    NSDictionary *recipe = self.arrayOfRecipes[indexPath.row];
-    cell.recipeName.text = recipe[@"title"];
-    cell.recipeDescription.text = recipe[@"instructions"];
-    NSString *URLString = recipe[@"image"];
+    Recipe *recipe = self.arrayOfRecipes[indexPath.row];
+    cell.recipeName.text = recipe.name;
+    cell.recipeDescription.text = recipe.instructions;
+    NSString *URLString = recipe.image;
     NSURL *url = [NSURL URLWithString:URLString];
     [cell.recipePicture setImageWithURL:url];
     return cell;
@@ -96,17 +97,27 @@
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
-                   self.arrayOfRecipes = dataDictionary[@"recipes"];               }
+                   // Array of recipes
+                   NSMutableArray *recipes = [Recipe recipesWithArray:recipeDictionaries];
+//                   self.arrayOfRecipes = dataDictionary[@"recipes"];
+                   self.arrayOfRecipes = recipes;
+                   
+               }
                NSLog(@"%@", self.arrayOfRecipes);
+               [self.tableView reloadData];
+               [self.refreshControl endRefreshing];
            }
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
        }];
     
     [task resume];
 }
-
-
+/*
+- (void) fetchPrices: (Recipe{ 
+    NSURL *url = [NSString stringWithFormat: @"https://api.spoonacular.com/recipes/%@/priceBreakdownWidget.json?apiKey=7ee2f3490cba48248134eb847d9ec717", id;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+}
+*/
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];

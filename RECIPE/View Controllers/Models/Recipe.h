@@ -11,9 +11,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Recipe : NSObject
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *instructions;
+@property (nonatomic, strong) NSString *image;
 @property (nonatomic, strong) NSString *country;
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *ingredients;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
++ (NSMutableArray *)recipesWithArray:(NSArray *)dictionaries;
 @end
 
 NS_ASSUME_NONNULL_END
