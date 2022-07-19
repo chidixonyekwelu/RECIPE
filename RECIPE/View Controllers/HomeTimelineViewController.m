@@ -49,7 +49,6 @@
     for (i = 0; i < 2;i++){
         NSLog(@"recipes");
         [self fetchRecipes];
-        [self fetchPricesForID]
     }
     
     [self.tableView reloadData];
@@ -65,7 +64,7 @@
     NSLog(@"RECIPE: %@", recipe.name);
     cell.recipeName.text = recipe.name;
     cell.recipeDescription.text = recipe.instructions;
-    cell.recipePrice.text = recipe.price;
+    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
     NSString *URLString = recipe.image;
     NSURL *url = [NSURL URLWithString:URLString];
     [cell.recipePicture setImageWithURL:url];

@@ -15,7 +15,10 @@
         self.name = dictionary[@"title"];
         self.instructions = dictionary[@"instructions"];
         self.image = dictionary[@"image"];
-        self.price = dictionary[@"totalCost"];
+        self.price = [NSString stringWithFormat:@"%f", [dictionary[@"pricePerServing"] floatValue] * [dictionary[@"servings"] floatValue] ];
+       
+        
+        
     }
     return self;
 }
