@@ -45,29 +45,28 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
-    int i;
-    for (i = 0; i < 20;i++){
+    
         NSLog(@"recipes");
         [self fetchRecipes];
-    }
-    __block int counter = 1;
-    for (NSDictionary *recipeinfo in self.arrayOfRecipes){
-    PFObject *recipeInfo = [PFObject objectWithClassName:@"Recipe"];
-    recipeInfo[@"RecipeName"] = recipeinfo[@"name"];
-    recipeInfo[@"RecipeInstructions"] = recipeinfo[@"instructions"];
-    recipeInfo[@"RecipeImage"] = recipeinfo[@"image"];
-    recipeInfo[@"RecipePrice"] = recipeinfo[@"price"];
-    [recipeInfo save];
-    counter ++;
+    
+    int i = 0;
+    for (NSDictionary *recipeInfo in self.arrayOfRecipes){
+            PFObject *recipeInfo = [PFObject objectWithClassName:@"Recipe"];
+            recipeInfo[@"RecipeName"] = recipeInfo[@"name"];
+            recipeInfo[@"RecipeInstructions"] = recipeInfo[@"instructions"];
+            recipeInfo[@"RecipeImage"] = recipeInfo[@"image"];
+            recipeInfo[@"RecipePrice"] = recipeInfo[@"price"];
+                [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded) {
+                        NSLog(@"Recipes been saved");
+                      } else {
+                          NSLog(@"Failed to save, try again later");
+                      }
+                }];
+            i++;
 
-
-
-
-
-
-
-    NSLog(@"recipes");
-    }
+        NSLog(@"recipes");
+        }
     
     [self.tableView reloadData];
 }
