@@ -25,7 +25,9 @@
         } else {
             NSLog(@"User logged in successfully");
             [self showHomeTimeline];
-        }}];
+        }
+        
+    }];
 }
 
 - (void)viewDidLoad {

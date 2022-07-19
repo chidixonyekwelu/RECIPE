@@ -169,7 +169,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIU-wX-WMJ">
-                                                    <rect key="frame" x="162" y="75" width="212" height="94"/>
+                                                    <rect key="frame" x="162" y="75" width="212" height="117"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -182,7 +182,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P22-a8-9uJ">
-                                                    <rect key="frame" x="162" y="169" width="175" height="35"/>
+                                                    <rect key="frame" x="162" y="189" width="175" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -293,6 +293,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Eg-4e-SFP">
+                                <rect key="frame" x="155" y="202" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FLj-ZE-DX9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -317,6 +324,7 @@
                         <outlet property="recipeIngredients" destination="Phd-2u-2Yn" id="c12-0m-FOv"/>
                         <outlet property="recipeInstructions" destination="UaK-00-zEB" id="hVx-lf-A9F"/>
                         <outlet property="recipeName" destination="fce-7J-6Hq" id="lIV-h1-ptj"/>
+                        <outlet property="recipePrice" destination="9Eg-4e-SFP" id="bSi-mw-IGD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MA-fd-Gfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecipeDetailsViewController : UIViewController
-@property (nonatomic, strong) Recipe *arrayOfRecipes;
+@property (nonatomic, strong) Recipe *recipe;
 @end
 
 NS_ASSUME_NONNULL_END

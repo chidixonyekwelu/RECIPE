@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *idnumber;
 @property (nonatomic, strong) NSString *country;
 @property (nonatomic, strong) NSString *price;
-@property (nonatomic, strong) NSString *ingredients;
+@property (nonatomic, strong) NSArray *ingredients;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)recipesWithArray:(NSArray *)dictionaries;

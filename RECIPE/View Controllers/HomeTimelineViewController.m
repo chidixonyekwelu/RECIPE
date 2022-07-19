@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tableView.delegate =self;
+    self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -46,9 +46,27 @@
     [self.tableView addSubview:self.refreshControl];
     
     int i;
-    for (i = 0; i < 2;i++){
+    for (i = 0; i < 20;i++){
         NSLog(@"recipes");
         [self fetchRecipes];
+    }
+    __block int counter = 1;
+    for (NSDictionary *recipeinfo in self.arrayOfRecipes){
+    PFObject *recipeInfo = [PFObject objectWithClassName:@"Recipe"];
+    recipeInfo[@"RecipeName"] = recipeinfo[@"name"];
+    recipeInfo[@"RecipeInstructions"] = recipeinfo[@"instructions"];
+    recipeInfo[@"RecipeImage"] = recipeinfo[@"image"];
+    recipeInfo[@"RecipePrice"] = recipeinfo[@"price"];
+    [recipeInfo save];
+    counter ++;
+
+
+
+
+
+
+
+    NSLog(@"recipes");
     }
     
     [self.tableView reloadData];
@@ -74,7 +92,7 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=576edbba44224bb69eac555caa2d3e51"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=56ffff1678d042b3aff0288b3be2e049"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -96,15 +114,13 @@
                [self.activityIndicator stopAnimating];
                if (self.arrayOfRecipes!= nil) {
                    Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
-        //           NSLog(@"%@", dataDictionary[@"recipes"][0][@"id"]);
+
                    [self.arrayOfRecipes addObject:recipe];
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
                    // Array of recipes
                    NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
-//                   NSLog(@"%@", dataDictionary[@"totalCost"]);
-//                   self.arrayOfRecipes = dataDictionary[@"recipes"];
                    self.arrayOfRecipes = recipes;
                    
                }
@@ -123,9 +139,12 @@
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
     RecipeDetailsViewController *recipeDetailVC = [segue destinationViewController];
-    recipeDetailVC.arrayOfRecipes = self.arrayOfRecipes[IndexPath.row];
+    recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
    
 }
+    
+
+
 
 
 

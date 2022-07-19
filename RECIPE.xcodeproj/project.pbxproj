@@ -149,10 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
+				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
 				EE63DD37287629D40046554E /* SettingsViewController.m */,
-				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
 				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
 				EE63DD39287641B60046554E /* LoginViewController.h */,
@@ -161,7 +161,6 @@
 				EE63DD462877B7B60046554E /* RegisterViewController.m */,
 				EE63DD492877B8310046554E /* ViewController.m */,
 				EE63DD482877B8310046554E /* ViewController.h */,
-				EE63DD432877B4850046554E /* RecipeCell.m */,
 				EE63DD36287629D40046554E /* SettingsViewController.h */,
 				EE57856A288246790057C2B7 /* Models */,
 			);
@@ -210,6 +209,7 @@
 				EE0A8EC62882133C00BBD9BA /* Keys.plist */,
 				EE63DD04287628260046554E /* Main.storyboard */,
 				EE63DD422877B4850046554E /* RecipeCell.h */,
+				EE63DD432877B4850046554E /* RecipeCell.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,
