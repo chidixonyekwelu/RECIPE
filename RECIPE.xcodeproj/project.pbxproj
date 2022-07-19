@@ -161,6 +161,7 @@
 				EE63DD462877B7B60046554E /* RegisterViewController.m */,
 				EE63DD492877B8310046554E /* ViewController.m */,
 				EE63DD482877B8310046554E /* ViewController.h */,
+				EE63DD432877B4850046554E /* RecipeCell.m */,
 				EE63DD36287629D40046554E /* SettingsViewController.h */,
 				EE57856A288246790057C2B7 /* Models */,
 			);
@@ -209,7 +210,6 @@
 				EE0A8EC62882133C00BBD9BA /* Keys.plist */,
 				EE63DD04287628260046554E /* Main.storyboard */,
 				EE63DD422877B4850046554E /* RecipeCell.h */,
-				EE63DD432877B4850046554E /* RecipeCell.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,

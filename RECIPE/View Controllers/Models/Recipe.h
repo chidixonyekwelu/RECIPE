@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *instructions;
 @property (nonatomic, strong) NSString *image;
+@property (nonatomic, strong) NSString *idnumber;
 @property (nonatomic, strong) NSString *country;
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *ingredients;

@@ -36,34 +36,36 @@
     }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    int i;
-    for (i = 0; i < 10;i++){
-        NSLog(@"recipes");
-        [self fetchRecipes];
-    }
 
     self.tableView.delegate =self;
     self.tableView.dataSource = self;
-    [self.tableView reloadData];
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
+    int i;
+    for (i = 0; i < 2;i++){
+        NSLog(@"recipes");
+        [self fetchRecipes];
+        [self fetchPricesForID]
+    }
     
+    [self.tableView reloadData];
 }
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfRecipes.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (RecipeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
     Recipe *recipe = self.arrayOfRecipes[indexPath.row];
+    NSLog(@"RECIPE: %@", recipe.name);
     cell.recipeName.text = recipe.name;
     cell.recipeDescription.text = recipe.instructions;
+    cell.recipePrice.text = recipe.price;
     NSString *URLString = recipe.image;
     NSURL *url = [NSURL URLWithString:URLString];
     [cell.recipePicture setImageWithURL:url];
@@ -73,7 +75,7 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=7ee2f3490cba48248134eb847d9ec717"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=576edbba44224bb69eac555caa2d3e51"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -91,19 +93,24 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"DICTIONARY: %@", dataDictionary);
                [self.activityIndicator stopAnimating];
-               if (self.arrayOfRecipes!= nil)
-               { [self.arrayOfRecipes addObject:dataDictionary[@"recipes"][0]];
+               if (self.arrayOfRecipes!= nil) {
+                   [self fetchPricesForID];
+                   Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
+        //           NSLog(@"%@", dataDictionary[@"recipes"][0][@"id"]);
+                   [self.arrayOfRecipes addObject:recipe];
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
                    // Array of recipes
-                   NSMutableArray *recipes = [Recipe recipesWithArray:recipeDictionaries];
+                   NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
+//                   NSLog(@"%@", dataDictionary[@"totalCost"]);
 //                   self.arrayOfRecipes = dataDictionary[@"recipes"];
                    self.arrayOfRecipes = recipes;
                    
                }
-               NSLog(@"%@", self.arrayOfRecipes);
+               NSLog(@"ARRAY: %@", self.arrayOfRecipes);
                [self.tableView reloadData];
                [self.refreshControl endRefreshing];
            }
@@ -111,13 +118,52 @@
     
     [task resume];
 }
-/*
-- (void) fetchPrices: (Recipe{ 
-    NSURL *url = [NSString stringWithFormat: @"https://api.spoonacular.com/recipes/%@/priceBreakdownWidget.json?apiKey=7ee2f3490cba48248134eb847d9ec717", id;
+
+- (void) fetchPricesForID:(int)idnumber {
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.spoonacular.com/recipes/%d/priceBreakdownWidget.json?apiKey=576edbba44224bb69eac555caa2d3e5" , idnumber]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-}
-*/
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+           if (error != nil) {
+               NSLog(@"%@", [error localizedDescription]);
+               UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No connection"
+                                              message:@"Network Request Failed"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+               UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault
+                  handler:^(UIAlertAction * action) {}];
+                
+               [alert addAction:defaultAction];
+               [self presentViewController:alert animated:YES completion:nil];
+           }
+           else {
+               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+               NSLog(@"DICTIONARY: %@", dataDictionary);
+               [self.activityIndicator stopAnimating];
+               if (self.arrayOfRecipes!= nil) {
+                   Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
+        //           NSLog(@"%@", dataDictionary[@"recipes"][0][@"id"]);
+                   [self.arrayOfRecipes addObject:recipe];
+                   NSLog(@"%@", self.arrayOfRecipes);
+               }
+               else {
+                   // Array of recipes
+                   NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
+//                   NSLog(@"%@", dataDictionary[@"totalCost"]);
+//                   self.arrayOfRecipes = dataDictionary[@"recipes"];
+                   self.arrayOfRecipes = recipes;
+                   
+               }
+               NSLog(@"ARRAY: %@", self.arrayOfRecipes);
+               [self.tableView reloadData];
+               [self.refreshControl endRefreshing];
+           }
+       }];
+    
+    [task resume];
+};
+                       
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];

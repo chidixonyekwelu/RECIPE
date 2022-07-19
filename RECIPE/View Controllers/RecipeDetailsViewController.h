@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipe.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecipeDetailsViewController : UIViewController
-@property (nonatomic, strong) NSDictionary *arrayOfRecipes;
+@property (nonatomic, strong) Recipe *arrayOfRecipes;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,7 +15,7 @@
         self.name = dictionary[@"title"];
         self.instructions = dictionary[@"instructions"];
         self.image = dictionary[@"image"];
-    // Initialize any other properties
+        self.price = dictionary[@"totalCost"];
     }
     return self;
 }

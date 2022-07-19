@@ -181,6 +181,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P22-a8-9uJ">
+                                                    <rect key="frame" x="162" y="75" width="42" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="RqL-F8-JL6" secondAttribute="bottom" constant="32" id="1sD-lG-qFh"/>
@@ -193,6 +200,7 @@
                                             <outlet property="recipeDescription" destination="kIU-wX-WMJ" id="3FP-XO-oSW"/>
                                             <outlet property="recipeName" destination="sRL-1t-sWQ" id="qlm-TN-Nq8"/>
                                             <outlet property="recipePicture" destination="RqL-F8-JL6" id="p2A-VG-dLq"/>
+                                            <outlet property="recipePrice" destination="P22-a8-9uJ" id="u1J-S3-omE"/>
                                             <segue destination="Vok-TK-Yd1" kind="show" identifier="detailSegue" id="iD8-vA-fRt"/>
                                         </connections>
                                     </tableViewCell>
@@ -217,7 +225,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Filter"/>
                             </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="Search" translatesAutoresizingMaskIntoConstraints="NO" id="gxO-bM-xd0">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="gxO-bM-xd0">
                                 <rect key="frame" x="264" y="30" width="130" height="51"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -307,8 +315,8 @@
                     <connections>
                         <outlet property="recipeImage" destination="HzW-9J-lnh" id="v3v-dI-IHt"/>
                         <outlet property="recipeIngredients" destination="Phd-2u-2Yn" id="c12-0m-FOv"/>
+                        <outlet property="recipeInstructions" destination="UaK-00-zEB" id="hVx-lf-A9F"/>
                         <outlet property="recipeName" destination="fce-7J-6Hq" id="lIV-h1-ptj"/>
-                        <outlet property="recipePrice" destination="UaK-00-zEB" id="bqQ-uo-d1Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MA-fd-Gfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

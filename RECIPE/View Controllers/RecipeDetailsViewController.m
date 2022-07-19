@@ -9,8 +9,8 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface RecipeDetailsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *recipeIngredients;
 @property (weak, nonatomic) IBOutlet UILabel *recipeInstructions;
+@property (weak, nonatomic) IBOutlet UILabel *recipeIngredients;
 @property (weak, nonatomic) IBOutlet UILabel *recipeName;
 @property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
 @property (nonatomic, strong) NSArray *arrayOfIngredients;
@@ -18,38 +18,48 @@
 @end
 
 @implementation RecipeDetailsViewController {
-    BOOL isthere;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.recipeName.text = self.arrayOfRecipes[@"title"];
-    self.recipeInstructions.text = self.arrayOfRecipes[@"instructions"];
-    
-    NSString *URLString = _arrayOfRecipes[@"image"];
+    self.recipeName.text = self.arrayOfRecipes.name;
+    self.recipeInstructions.text = self.arrayOfRecipes.instructions;
+    NSString *URLString = _arrayOfRecipes.image;
     NSURL *url = [NSURL URLWithString:URLString];
     [self.recipeImage setImageWithURL:url];
-    isthere = true;
     
-    int i = 1;
-    NSString *indexer;
-    NSString *ingredientLabelString = @"    Ingredients:  \n";
     
-    while (isthere){
-        indexer = [NSString stringWithFormat:@"extendedIngredients%i", i];
-        NSString *nextone = [NSString stringWithFormat:@"extendedIngredients%i", i+1];
-        NSLog(@"🥶🥶🥶🥶🥶%@",self.arrayOfRecipes[indexer]);
-        
-       ingredientLabelString = [ingredientLabelString stringByAppendingString:[NSString stringWithFormat:@"    %i. %@ \n", i, self.arrayOfRecipes[indexer]]];
-        if ([self.arrayOfRecipes objectForKey:nextone] == nil) {
-            isthere = false;
-        }
-        i++;
-    }
-    NSLog(@"😡😡😡😡😡😡😡😡%@", ingredientLabelString);
-    self.recipeIngredients.text = ingredientLabelString;
-    
+ 
 }
 
 
 @end
+
+
+
+
+
+
+
+
+/*
+isthere = true;
+
+int i = 1;
+NSString *indexer;
+NSString *ingredientLabelString = @"    Ingredients:  \n";
+
+while (isthere){
+    indexer = [NSString stringWithFormat:@"extendedIngredients%i", i];
+    NSString *nextone = [NSString stringWithFormat:@"extendedIngredients%i", i+1];
+    NSLog(@"🥶🥶🥶🥶🥶%@",self.arrayOfRecipes[indexer]);
+    
+   ingredientLabelString = [ingredientLabelString stringByAppendingString:[NSString stringWithFormat:@"    %i. %@ \n", i, self.arrayOfRecipes[indexer]]];
+    if ([self.arrayOfRecipes objectForKey:nextone] == nil) {
+        isthere = false;
+    }
+    i++;
+}
+NSLog(@"😡😡😡😡😡😡😡😡%@", ingredientLabelString);
+self.recipeIngredients.text = ingredientLabelString;
+*/
