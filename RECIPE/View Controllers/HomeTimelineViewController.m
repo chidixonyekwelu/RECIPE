@@ -96,7 +96,6 @@
                NSLog(@"DICTIONARY: %@", dataDictionary);
                [self.activityIndicator stopAnimating];
                if (self.arrayOfRecipes!= nil) {
-                   [self fetchPricesForID];
                    Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
         //           NSLog(@"%@", dataDictionary[@"recipes"][0][@"id"]);
                    [self.arrayOfRecipes addObject:recipe];
@@ -119,50 +118,7 @@
     [task resume];
 }
 
-- (void) fetchPricesForID:(int)idnumber {
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.spoonacular.com/recipes/%d/priceBreakdownWidget.json?apiKey=576edbba44224bb69eac555caa2d3e5" , idnumber]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
-               NSLog(@"%@", [error localizedDescription]);
-               UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No connection"
-                                              message:@"Network Request Failed"
-                                              preferredStyle:UIAlertControllerStyleAlert];
-                
-               UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault
-                  handler:^(UIAlertAction * action) {}];
-                
-               [alert addAction:defaultAction];
-               [self presentViewController:alert animated:YES completion:nil];
-           }
-           else {
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               NSLog(@"DICTIONARY: %@", dataDictionary);
-               [self.activityIndicator stopAnimating];
-               if (self.arrayOfRecipes!= nil) {
-                   Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
-        //           NSLog(@"%@", dataDictionary[@"recipes"][0][@"id"]);
-                   [self.arrayOfRecipes addObject:recipe];
-                   NSLog(@"%@", self.arrayOfRecipes);
-               }
-               else {
-                   // Array of recipes
-                   NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
-//                   NSLog(@"%@", dataDictionary[@"totalCost"]);
-//                   self.arrayOfRecipes = dataDictionary[@"recipes"];
-                   self.arrayOfRecipes = recipes;
-                   
-               }
-               NSLog(@"ARRAY: %@", self.arrayOfRecipes);
-               [self.tableView reloadData];
-               [self.refreshControl endRefreshing];
-           }
-       }];
-    
-    [task resume];
-};
                        
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
