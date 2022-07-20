@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
+@property (nonatomic, strong) NSMutableArray *arrayOfTags;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -34,6 +35,7 @@
         NSLog(@"User logged out");
     }];
     }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -45,28 +47,15 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
-    
-        NSLog(@"recipes");
-        [self fetchRecipes];
-    
-    int i = 0;
-    for (NSDictionary *recipeInfo in self.arrayOfRecipes){
-            PFObject *recipeInfo = [PFObject objectWithClassName:@"Recipe"];
-            recipeInfo[@"RecipeName"] = recipeInfo[@"name"];
-            recipeInfo[@"RecipeInstructions"] = recipeInfo[@"instructions"];
-            recipeInfo[@"RecipeImage"] = recipeInfo[@"image"];
-            recipeInfo[@"RecipePrice"] = recipeInfo[@"price"];
-                [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    if (succeeded) {
-                        NSLog(@"Recipes been saved");
-                      } else {
-                          NSLog(@"Failed to save, try again later");
-                      }
-                }];
-            i++;
 
-        NSLog(@"recipes");
+    for(int i =0; i<5; i++){
+            NSString *array0ftags
+            NSLog(@"recipes");
+            [self fetchRecipes];
+            
+        
         }
+        
     
     [self.tableView reloadData];
 }
@@ -90,9 +79,9 @@
 }
 
 
-- (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=56ffff1678d042b3aff0288b3be2e049"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+- (void) fetchRecipes:(NSString *)arrayOftags {
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=90c3f35d57504dbd97f46a25c340677c"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
@@ -118,18 +107,35 @@
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
-                   // Array of recipes
+                 
                    NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
                    self.arrayOfRecipes = recipes;
                    
                }
+               
+               Recipe *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
+               PFObject *recipe = [PFObject objectWithClassName:@"Recipe"];
+               recipe[@"recipeName"] = recipeInfo.name;
+               recipe[@"recipeInstructions"] = recipeInfo.instructions;
+               recipe[@"recipePrice"] = recipeInfo.price;
+               [recipe saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                   if (succeeded) {
+                       NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
+                     } else {
+                         NSLog(@"Error: %@" , error);
+                         NSLog(@"Failed to save, try again later😡🥶🥶🥶");
+                     }
+               }];
+               NSLog(@"recipes");
+           
+           
                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
                [self.tableView reloadData];
                [self.refreshControl endRefreshing];
            }
        }];
-    
-    [task resume];
+        [task resume];
+        
 }
 
 
