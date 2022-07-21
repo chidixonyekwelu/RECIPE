@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RecipeObject : PFObject
+@interface RecipeObject : PFObject <PFSubclassing>
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *image;

@@ -25,6 +25,7 @@
         self.image = dictionary[@"image"];
         self.price = [NSString stringWithFormat:@"%f", [dictionary[@"pricePerServing"] floatValue] * [dictionary[@"servings"] floatValue] /100];
         NSLog(@"DICTIONARY: %@", dictionary);
+        self.idnumber = [NSString stringWithFormat:@"%@", dictionary[@"id"]];
         
         
     }

@@ -50,7 +50,7 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-        for(int i =0; i<20; i++){
+        for(int i =0; i<15; i++){
                 NSLog(@"recipes");
             [self fetchRecipes];
             
@@ -67,10 +67,10 @@
 
 - (RecipeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
-    Recipe *recipe = self.arrayOfRecipes[indexPath.row];
+    RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
     NSLog(@"%@: Recipes", recipe.name);
     cell.recipeName.text = recipe.name;
-    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
+//    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
 
     cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
     NSString *URLString = recipe.image;
@@ -103,25 +103,25 @@
                NSLog(@"DICTIONARY: %@", dataDictionary);
                [self.activityIndicator stopAnimating];
                if (self.arrayOfRecipes!= nil) {
-                   Recipe *recipe = [[Recipe alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
+                   RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
 
-                   [self.arrayOfRecipes addObject:recipe];
+                   [self.arrayOfRecipes addObject:recipeObject];
                    NSLog(@"%@", self.arrayOfRecipes);
                }
                else {
                  
-                   NSMutableArray *recipes = [Recipe recipesWithArray:dataDictionary[@"recipes"]];
+                   NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
                    self.arrayOfRecipes = recipes;
                    
                }
                
-               Recipe *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
-               PFObject *recipe = [PFObject objectWithClassName:@"Recipe"];
-               recipe[@"recipeName"] = recipeInfo.name;
-               recipe[@"recipeImage"] = recipeInfo.image;
-               recipe[@"recipePrice"] = recipeInfo.price;
-//               recipe[@"recipeIDNumber"] = recipeInfo.idnumber;
-               [recipe saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+               RecipeObject *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
+               RecipeObject *recipeObject = [RecipeObject objectWithClassName:@"RecipeObject"];
+               recipeObject[@"recipeName"] = recipeInfo.name;
+               recipeObject[@"recipeImage"] = recipeInfo.image;
+               recipeObject[@"recipePrice"] = recipeInfo.price;
+               recipeObject[@"recipeIDNumber"] = recipeInfo.idnumber;
+               [recipeObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                    if (succeeded) {
                        NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
                      } else {
@@ -150,26 +150,26 @@
     recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
    
 }
- /*
-- (void)fetchParseData{
-        PFQuery *query = [PFQuery queryWithClassName:@"Recipe"];
-        [query orderByDescending:@"createdAt"];
-        query.limit = 20;
-        [query findObjectsInBackgroundWithBlock:^(NSArray *recipes, NSError *error) {
-            if (recipes != nil) {
-                self.arrayOfRecipes = (NSMutableArray*) recipes;
-                NSLog(@"recipes");
-                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
+ 
+//- (void)fetchParseData{
+//        PFQuery *query = [PFQuery queryWithClassName:@"Recipe"];
+//        [query orderByDescending:@"createdAt"];
+//        query.limit = 20;
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *recipes, NSError *error) {
+//            if (recipes != nil) {
+//                self.arrayOfRecipes = (NSMutableArray*) recipes;
+//                NSLog(@"recipes");
+//                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
+//
+//                [self.tableView reloadData];
+//                [self.refreshControl endRefreshing];
+//            } else {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//        }];
+//}
 
-                [self.tableView reloadData];
-                [self.refreshControl endRefreshing];
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-}
 
-*/
 
 
 @end
