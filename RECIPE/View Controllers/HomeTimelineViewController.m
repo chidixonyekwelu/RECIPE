@@ -70,7 +70,7 @@
     Recipe *recipe = self.arrayOfRecipes[indexPath.row];
     NSLog(@"%@: Recipes", recipe.name);
     cell.recipeName.text = recipe.name;
-//    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
+    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
 
     cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
     NSString *URLString = recipe.image;
