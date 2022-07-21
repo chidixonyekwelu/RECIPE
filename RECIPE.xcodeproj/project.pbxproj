@@ -13,6 +13,8 @@
 		EE0A8EC72882133C00BBD9BA /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE0A8EC62882133C00BBD9BA /* Keys.plist */; };
 		EE5785702888C3810057C2B7 /* RecipeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EE57856F2888C3810057C2B7 /* RecipeObject.m */; };
 		EE5785732889BF3B0057C2B7 /* RECIPETests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DD17287628270046554E /* RECIPETests.m */; };
+		EE578578288A051C0057C2B7 /* ButtonCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE578576288A051C0057C2B7 /* ButtonCellTableViewCell.m */; };
+		EE578579288A051C0057C2B7 /* ButtonCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */; };
 		EE63DCFD287628260046554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFC287628260046554E /* AppDelegate.m */; };
 		EE63DD00287628260046554E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFF287628260046554E /* SceneDelegate.m */; };
 		EE63DD06287628260046554E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE63DD04287628260046554E /* Main.storyboard */; };
@@ -62,6 +64,9 @@
 		EE0A8EC62882133C00BBD9BA /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		EE57856E2888C3810057C2B7 /* RecipeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeObject.h; sourceTree = "<group>"; };
 		EE57856F2888C3810057C2B7 /* RecipeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecipeObject.m; sourceTree = "<group>"; };
+		EE578575288A051C0057C2B7 /* ButtonCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ButtonCellTableViewCell.h; path = RECIPE/ButtonCellTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		EE578576288A051C0057C2B7 /* ButtonCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ButtonCellTableViewCell.m; path = RECIPE/ButtonCellTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ButtonCellTableViewCell.xib; path = RECIPE/ButtonCellTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		EE63DCF8287628260046554E /* RECIPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RECIPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63DCFB287628260046554E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE63DCFC287628260046554E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -155,6 +160,9 @@
 				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
+				EE578575288A051C0057C2B7 /* ButtonCellTableViewCell.h */,
+				EE578576288A051C0057C2B7 /* ButtonCellTableViewCell.m */,
+				EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */,
 				EE63DD37287629D40046554E /* SettingsViewController.m */,
 				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
 				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
@@ -365,6 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE578579288A051C0057C2B7 /* ButtonCellTableViewCell.xib in Resources */,
 				EE0A8EC72882133C00BBD9BA /* Keys.plist in Resources */,
 				EE63DD0B287628270046554E /* LaunchScreen.storyboard in Resources */,
 				EE63DD08287628270046554E /* Assets.xcassets in Resources */,
@@ -497,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE5785702888C3810057C2B7 /* RecipeObject.m in Sources */,
+				EE578578288A051C0057C2B7 /* ButtonCellTableViewCell.m in Sources */,
 				EE63DD442877B4850046554E /* RecipeCell.m in Sources */,
 				EE63DCFD287628260046554E /* AppDelegate.m in Sources */,
 				EE63DD35287629240046554E /* HomeTimelineViewController.m in Sources */,

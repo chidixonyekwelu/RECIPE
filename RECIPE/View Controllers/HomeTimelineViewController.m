@@ -21,12 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
+@property(readonly) NSUInteger count;
 
 @end
 
 @implementation HomeTimelineViewController{
-}
-- (IBAction)loadMoreButton:(id)sender {
 }
 - (IBAction)logOutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -50,11 +49,11 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-                for(int i = 0; i < 15; i++){
-                        NSLog(@"recipes");
-                    [self fetchRecipes];
-                    
-                }
+    for(int i = 0; i < 15; i++){
+            NSLog(@"recipes");
+            [self fetchRecipes];
+                            
+       }
         
     
     [self.tableView reloadData];
@@ -70,8 +69,6 @@
     RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
     NSLog(@"%@: Recipes", recipe.name);
     cell.recipeName.text = recipe.name;
-//    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
-
     cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
     NSString *URLString = recipe.image;
     NSURL *url = [NSURL URLWithString:URLString];
@@ -82,7 +79,7 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=33017b9819bb44d2809d128f1a1e7986"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -102,12 +99,14 @@
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                NSLog(@"DICTIONARY: %@", dataDictionary);
                [self.activityIndicator stopAnimating];
-               if (self.arrayOfRecipes!= nil) {
+               
+               if (self.arrayOfRecipes.count != 0) {
                    RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
 
                    [self.arrayOfRecipes addObject:recipeObject];
+                   NSLog(@"There is length😭😭😭😭😭");
                    NSLog(@"%@", self.arrayOfRecipes);
-               }
+               } 
                else {
                  
                    NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
@@ -116,12 +115,8 @@
                }
                
                RecipeObject *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
-               RecipeObject *recipeObject = [RecipeObject objectWithClassName:@"RecipeObject"];
-               recipeObject[@"recipeName"] = recipeInfo.name;
-               recipeObject[@"recipeImage"] = recipeInfo.image;
-               recipeObject[@"recipePrice"] = recipeInfo.price;
-               recipeObject[@"recipeIDNumber"] = recipeInfo.idnumber;
-               [recipeObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+               
+               [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                    if (succeeded) {
                        NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
                      } else {
