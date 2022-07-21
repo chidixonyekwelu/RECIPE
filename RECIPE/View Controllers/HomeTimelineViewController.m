@@ -8,6 +8,7 @@
 #import "HomeTimelineViewController.h"
 #import "RecipeCell.h"
 #import "Recipe.h"
+#import "RecipeObject.h"
 #import "RecipeDetailsViewController.h"
 #import "SceneDelegate.h"
 #import "ViewController.h"
@@ -19,12 +20,13 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
-@property (nonatomic, strong) NSMutableArray *arrayOfTags;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
 @implementation HomeTimelineViewController{
+}
+- (IBAction)loadMoreButton:(id)sender {
 }
 - (IBAction)logOutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -48,16 +50,15 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-    for(int i =0; i<5; i++){
-            NSString *array0ftags
-            NSLog(@"recipes");
+        for(int i =0; i<20; i++){
+                NSLog(@"recipes");
             [self fetchRecipes];
             
-        
-        }
+            }
         
     
     [self.tableView reloadData];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -67,11 +68,12 @@
 - (RecipeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
     Recipe *recipe = self.arrayOfRecipes[indexPath.row];
-    NSLog(@"RECIPE: %@", recipe.name);
-    cell.recipeName.text = recipe.name;
-    cell.recipeDescription.text = recipe.instructions;
-    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
-    NSString *URLString = recipe.image;
+    NSLog(@"%@: Recipes", recipe[@"recipeName"]);
+    cell.recipeName.text = recipe[@"recipeName"];
+    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe[@"recipeInstructions"] dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
+
+    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"recipePrice"]];
+    NSString *URLString = recipe[@"recipeImage"];
     NSURL *url = [NSURL URLWithString:URLString];
     [cell.recipePicture setImageWithURL:url];
     return cell;
@@ -79,9 +81,9 @@
 }
 
 
-- (void) fetchRecipes:(NSString *)arrayOftags {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=90c3f35d57504dbd97f46a25c340677c"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0];
+- (void) fetchRecipes {
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=10af67ab341f46a8ad2fb587b5922c93"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
@@ -116,8 +118,9 @@
                Recipe *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
                PFObject *recipe = [PFObject objectWithClassName:@"Recipe"];
                recipe[@"recipeName"] = recipeInfo.name;
-               recipe[@"recipeInstructions"] = recipeInfo.instructions;
+               recipe[@"recipeImage"] = recipeInfo.image;
                recipe[@"recipePrice"] = recipeInfo.price;
+//               recipe[@"recipeIDNumber"] = recipeInfo.idnumber;
                [recipe saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                    if (succeeded) {
                        NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
@@ -147,10 +150,26 @@
     recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
    
 }
-    
+ /*
+- (void)fetchParseData{
+        PFQuery *query = [PFQuery queryWithClassName:@"Recipe"];
+        [query orderByDescending:@"createdAt"];
+        query.limit = 20;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *recipes, NSError *error) {
+            if (recipes != nil) {
+                self.arrayOfRecipes = (NSMutableArray*) recipes;
+                NSLog(@"recipes");
+                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
 
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+}
 
-
+*/
 
 
 @end

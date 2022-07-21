@@ -9,6 +9,19 @@
 
 @implementation Recipe
 
+@dynamic name;
+@dynamic instructions;
+@dynamic image;
+@dynamic price;
+@dynamic country;
+@dynamic ingredients;
+@dynamic idnumber;
+
++ (nonnull NSString *)parseClassName {
+    return @"Recipe";
+}
+
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {

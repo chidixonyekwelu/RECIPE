@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Recipe : NSObject
+@interface Recipe : PFObject <PFSubclassing>
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *instructions;
 @property (nonatomic, strong) NSString *image;
