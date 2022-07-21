@@ -10,6 +10,7 @@
 #import "Recipe.h"
 #import "RecipeObject.h"
 #import "RecipeDetailsViewController.h"
+#import "ButtonCellTableViewCell.h"
 #import "SceneDelegate.h"
 #import "ViewController.h"
 #import "Parse/Parse.h"
@@ -26,6 +27,18 @@
 @end
 
 @implementation HomeTimelineViewController{
+}
+- (IBAction)loadMoreButton:(id)sender {
+    [self fetchRecipes];
+    
+    for(int i = 0; i < 15; i++){
+            NSLog(@"recipes");
+            [self fetchRecipes];
+                            
+       }
+        
+        
+    
 }
 - (IBAction)logOutButton:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -61,19 +74,28 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.arrayOfRecipes.count;
+    return self.arrayOfRecipes.count +1;
 }
 
-- (RecipeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
-    RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
-    NSLog(@"%@: Recipes", recipe.name);
-    cell.recipeName.text = recipe.name;
-    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
-    NSString *URLString = recipe.image;
-    NSURL *url = [NSURL URLWithString:URLString];
-    [cell.recipePicture setImageWithURL:url];
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row == self.arrayOfRecipes.count) {
+        ButtonCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"loadMoreCell" forIndexPath:indexPath];
+        return cell;
+    }
+    else{
+        RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
+        RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
+        NSLog(@"%@: Recipes", recipe.name);
+        cell.recipeName.text = recipe.name;
+        cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
+        NSString *URLString = recipe.image;
+        NSURL *url = [NSURL URLWithString:URLString];
+        [cell.recipePicture setImageWithURL:url];
+        return cell;
+
+    }
+    
+    
  
 }
 
@@ -146,23 +168,23 @@
    
 }
  
-//- (void)fetchParseData{
-//        PFQuery *query = [PFQuery queryWithClassName:@"Recipe"];
-//        [query orderByDescending:@"createdAt"];
-//        query.limit = 20;
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *recipes, NSError *error) {
-//            if (recipes != nil) {
-//                self.arrayOfRecipes = (NSMutableArray*) recipes;
-//                NSLog(@"recipes");
-//                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
-//
-//                [self.tableView reloadData];
-//                [self.refreshControl endRefreshing];
-//            } else {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//}
+- (void)fetchParseData{
+        PFQuery *query = [PFQuery queryWithClassName:@"RecipeObject"];
+        [query orderByDescending:@"createdAt"];
+        query.limit = 20;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *recipes, NSError *error) {
+            if (recipes != nil) {
+                self.arrayOfRecipes = (NSMutableArray*) recipes;
+                NSLog(@"recipes");
+                NSLog(@"ARRAY: %@", self.arrayOfRecipes);
+
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+}
 
 
 
