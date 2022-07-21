@@ -50,11 +50,11 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-        for(int i =0; i<15; i++){
-                NSLog(@"recipes");
-            [self fetchRecipes];
-            
-            }
+                for(int i = 0; i < 15; i++){
+                        NSLog(@"recipes");
+                    [self fetchRecipes];
+                    
+                }
         
     
     [self.tableView reloadData];
