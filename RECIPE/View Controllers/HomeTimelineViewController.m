@@ -68,12 +68,12 @@
 - (RecipeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
     Recipe *recipe = self.arrayOfRecipes[indexPath.row];
-    NSLog(@"%@: Recipes", recipe[@"recipeName"]);
-    cell.recipeName.text = recipe[@"recipeName"];
-    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe[@"recipeInstructions"] dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
+    NSLog(@"%@: Recipes", recipe.name);
+    cell.recipeName.text = recipe.name;
+//    cell.recipeDescription.text = [[NSAttributedString alloc] initWithData:[recipe.instructions dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
 
-    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"recipePrice"]];
-    NSString *URLString = recipe[@"recipeImage"];
+    cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe.price];
+    NSString *URLString = recipe.image;
     NSURL *url = [NSURL URLWithString:URLString];
     [cell.recipePicture setImageWithURL:url];
     return cell;
@@ -82,7 +82,7 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=10af67ab341f46a8ad2fb587b5922c93"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=33017b9819bb44d2809d128f1a1e7986"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
