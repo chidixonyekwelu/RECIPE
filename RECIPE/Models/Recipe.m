@@ -30,7 +30,6 @@
         self.image = dictionary[@"image"];
         self.price = [NSString stringWithFormat:@"%f", [dictionary[@"pricePerServing"] floatValue] * [dictionary[@"servings"] floatValue] /100];
         self.ingredients = dictionary[@"extendedIngredients"];
-        
         NSLog(@"DICTIONARY: %@", dictionary);
         
         

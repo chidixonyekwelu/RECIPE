@@ -34,8 +34,8 @@
             filePath = "RECIPE/View Controllers/HomeTimelineViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-fetchRecipes"
             landmarkType = "7">
          </BreakpointContent>

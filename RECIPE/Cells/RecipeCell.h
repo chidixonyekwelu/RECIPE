@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Recipe.h"
+#import "User.h"
 #import "RecipeObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *recipePicture;
 @property (weak, nonatomic) IBOutlet UILabel *recipeDescription;
 @property (weak, nonatomic) IBOutlet UILabel *recipeName;
+@property (weak, nonatomic) IBOutlet UIButton *recipeLikeButton;
 
 
 @end
