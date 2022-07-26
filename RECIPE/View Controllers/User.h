@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-//@property (nonatomic) BOOL favorited; // Configure favorite button
+//@property (nonatomic) BOOL favorited
 
 @interface User : NSObject
 

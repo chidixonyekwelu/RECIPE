@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
-//@property (nonatomic, strong) NSMutableArray *filteredRecipes;
+@property (nonatomic, strong) NSArray *searchResults;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property(readonly) NSUInteger count;
 
@@ -46,7 +46,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -56,12 +55,8 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-    for(int i = 0; i < 2; i++){
-            NSLog(@"recipes");
-            [self fetchParseData];
-                            
-       }
-        
+    
+    [self fetchParseData];
     
     [self.tableView reloadData];
     
@@ -70,8 +65,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.arrayOfRecipes.count +1;
+   
+    return self.arrayOfRecipes.count + 1;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,6 +84,9 @@
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
+        
+        
+        
         return cell;
 
     }
@@ -157,75 +156,24 @@
         
 }
 
-- (void)fetchRecipeInfoUsingID :(NSString *) idnumber{
-        NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/%@/information?includeNutrition=false" ,idnumber];
-        NSURL *url = [NSURL URLWithString:str];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-    {
-          if (error != nil) {
-              NSLog(@"%@", [error localizedDescription]);
-              UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No connection"
-                                             message:@"Network Request Failed"
-                                             preferredStyle:UIAlertControllerStyleAlert];
-               
-              UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault
-                 handler:^(UIAlertAction * action) {}];
-               
-              [alert addAction:defaultAction];
-              [self presentViewController:alert animated:YES completion:nil];
-           }
-          else {
-              NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-              NSLog(@"DICTIONARY: %@", dataDictionary);
-              [self.activityIndicator stopAnimating];
-              
-              if (self.arrayOfRecipes.count != 0) {
-                  RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
 
-                  [self.arrayOfRecipes addObject:recipeObject];
-                  NSLog(@"There is length😭😭😭😭😭");
-                  NSLog(@"%@", self.arrayOfRecipes);
-            }
-              else {
-                
-                  NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
-                  self.arrayOfRecipes = recipes;
-                  
-            }
-              
-              RecipeObject *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
-              
-              [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-               if (succeeded) {
-                      NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
-                      [self fetchParseData];
-                      [self.tableView reloadData];
-            }
-               else {
-                        NSLog(@"Error: %@" , error);
-                        NSLog(@"Failed to save, try again later😡🥶🥶🥶");
-            }
-              }];
-              NSLog(@"recipes");
-          
-          
-              NSLog(@"ARRAY: %@", self.arrayOfRecipes);
-              [self.tableView reloadData];
-              [self.refreshControl endRefreshing];
-          }
-      }];
-       [task resume];
-       
-
-
-}
+//- (Recipe *) objectToModel: (RecipeObject*) recipeobj{
+//    Recipe *recipemodel = [Recipe new];
+//    recipemodel.name = recipeobj.name;
+//    recipemodel.instructions = recipeobj.instructions;
+//    recipemodel.image = recipeobj.image;
+//    recipemodel.idnumber = recipeobj.idnumber;
+//    recipemodel.price = [NSString stringWithFormat:@"%f", [recipeobj[@"pricePerServing"] floatValue] * [recipeobj[@"servings"] floatValue] /100];
+//    recipemodel.ingredients = recipeobj[@"extendedIngredients"];
+//    return recipemodel;
+//}
+    
 
                        
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
+//    Recipe *recipeModel = [self objectToModel:self.arrayOfRecipes[IndexPath.row]];
     RecipeDetailsViewController *recipeDetailVC = [segue destinationViewController];
     recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
    
@@ -250,6 +198,23 @@
 
 
 
+//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+//{
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+//    _searchResults = [_arrayOfRecipes filteredArrayUsingPredicate:resultPredicate];
+//}
+//
+//
+//
+//-(BOOL)searchDisplayController:(UISearchController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self filterContentForSearchText:searchString
+//            scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+//                objectAtIndex:[self.searchDisplayController.searchBar
+//                selectedScopeButtonIndex]]];
+//
+//    return YES;
+//}
 
 @end
 

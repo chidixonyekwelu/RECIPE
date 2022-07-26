@@ -34,9 +34,41 @@
             filePath = "RECIPE/View Controllers/HomeTimelineViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-fetchRecipes"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B735539-2CA2-418E-9BBA-4A670392F40B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RECIPE/View Controllers/RecipeDetailsViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3A58D9D-6639-442B-B211-DAEF963C0391"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RECIPE/View Controllers/RecipeDetailsViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-fetchRecipeInfoUsingID:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
