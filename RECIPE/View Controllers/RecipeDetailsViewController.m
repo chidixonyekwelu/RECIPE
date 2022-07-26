@@ -24,27 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchRecipeInfoUsingID:self.recipe.idnumber];
-//    self.recipeName.text = self.recipe.name;
-//    self.recipeInstructions.text = self.recipe.instructions;
-//    self.recipePrice.text = [@"Price: $" stringByAppendingString:self.recipe.price];
-//    NSString *URLString = self.recipe.image;
-//    NSURL *url = [NSURL URLWithString:URLString];
-//    [self.recipeImage setImageWithURL:url];
-//
-//    NSLog(@"RECIPE: %@", self.recipe);
-//    NSLog(@"INGREDIENTS: %@", self.recipe.ingredients);
-//
-//    NSString *ingredientsString = @"Ingredients \n";
-//    int counter = 1;
-//
-//    for (NSDictionary *dict in self.recipe.ingredients){
-//        ingredientsString = [ingredientsString stringByAppendingString:[NSString stringWithFormat:@"    %i. %@ \n", counter, dict[@"name"]]];
-//        counter = counter + 1;
-//    }
-//
-//    self.recipeIngredients.text = ingredientsString;
-    
+    [self fetchRecipeInfoUsingID:self.recipe.idnumber];  
  
 }
 

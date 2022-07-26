@@ -156,24 +156,12 @@
         
 }
 
-
-//- (Recipe *) objectToModel: (RecipeObject*) recipeobj{
-//    Recipe *recipemodel = [Recipe new];
-//    recipemodel.name = recipeobj.name;
-//    recipemodel.instructions = recipeobj.instructions;
-//    recipemodel.image = recipeobj.image;
-//    recipemodel.idnumber = recipeobj.idnumber;
-//    recipemodel.price = [NSString stringWithFormat:@"%f", [recipeobj[@"pricePerServing"] floatValue] * [recipeobj[@"servings"] floatValue] /100];
-//    recipemodel.ingredients = recipeobj[@"extendedIngredients"];
-//    return recipemodel;
-//}
     
 
                        
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
-//    Recipe *recipeModel = [self objectToModel:self.arrayOfRecipes[IndexPath.row]];
     RecipeDetailsViewController *recipeDetailVC = [segue destinationViewController];
     recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
    
@@ -198,23 +186,7 @@
 
 
 
-//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-//{
-//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-//    _searchResults = [_arrayOfRecipes filteredArrayUsingPredicate:resultPredicate];
-//}
-//
-//
-//
-//-(BOOL)searchDisplayController:(UISearchController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    [self filterContentForSearchText:searchString
-//            scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                objectAtIndex:[self.searchDisplayController.searchBar
-//                selectedScopeButtonIndex]]];
-//
-//    return YES;
-//}
+
 
 @end
 
