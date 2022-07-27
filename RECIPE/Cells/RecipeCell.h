@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *recipeName;
 @property (weak, nonatomic) IBOutlet UIButton *recipeLikeButton;
 
+@property (nonatomic, strong) RecipeObject *recipe;
 
 @end
 

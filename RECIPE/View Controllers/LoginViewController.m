@@ -37,7 +37,7 @@
 
 - (void) showHomeTimeline {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTimelineViewController"];
+    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
     SceneDelegate *mySceneDelegate = (SceneDelegate *) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
     mySceneDelegate.window.rootViewController = tabBarController;
 }

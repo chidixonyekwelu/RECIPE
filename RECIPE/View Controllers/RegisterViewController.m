@@ -7,8 +7,10 @@
 
 #import "RegisterViewController.h"
 #import "Parse/Parse.h"
+#import "SceneDelegate.h"
 
 @interface RegisterViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *usersAge;
 @property (weak, nonatomic) IBOutlet UITextField *usersPassword;
 @property (weak, nonatomic) IBOutlet UITextField *usersUsername;
 
@@ -36,6 +38,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+}
+- (void) showHomeTimeline {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    SceneDelegate *mySceneDelegate = (SceneDelegate *) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+    mySceneDelegate.window.rootViewController = tabBarController;
 }
 
 

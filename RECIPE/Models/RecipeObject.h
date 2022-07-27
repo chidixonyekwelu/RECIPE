@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *idnumber;
 @property (nonatomic, strong) NSString *ingredients;
 @property (nonatomic, strong) NSString *instructions;
+@property (nonatomic, strong) NSString *idStr;
+@property (nonatomic) BOOL favorited;
+
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)recipesWithArray:(NSArray *)dictionaries;

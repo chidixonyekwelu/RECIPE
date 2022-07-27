@@ -11,10 +11,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-}
-- (IBAction)didTapFavorite:(id)sender {
 
 }
+- (IBAction)didTapFavorite:(id)sender {
+    [self.recipeLikeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+    
+    
+
 
 @end

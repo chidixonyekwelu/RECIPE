@@ -45,9 +45,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+     
+    self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self fetchRecipes];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -65,25 +68,28 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
-    return self.arrayOfRecipes.count + 1;
+        return self.searchResults.count ;
+
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == self.arrayOfRecipes.count) {
+    if(indexPath.row == self.searchResults.count) {
         ButtonCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"loadMoreCell" forIndexPath:indexPath];
+        NSLog(@"SHOW RECIPES: %@", self.arrayOfRecipes);
         return cell;
     }
     else{
         RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
-        RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
+        RecipeObject *recipe = self.searchResults[indexPath.row];
         NSLog(@"%@: Recipes", recipe[@"name"]);
         cell.recipeName.text = recipe[@"name"];
         cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"price"]];
+//        NSString* formattedNumber = [NSString stringWithFormat:@"%@", self.recipe.price];
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
+        
         
         
         
@@ -124,11 +130,13 @@
                    [self.arrayOfRecipes addObject:recipeObject];
                    NSLog(@"There is length😭😭😭😭😭");
                    NSLog(@"%@", self.arrayOfRecipes);
+                   [self updateFilteredMeals];
                } 
                else {
                  
                    NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
                    self.arrayOfRecipes = recipes;
+                   [self updateFilteredMeals];
                    
                }
                
@@ -137,7 +145,6 @@
                [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                    if (succeeded) {
                        NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
-                       [self fetchParseData];
                        [self.tableView reloadData];
                      } else {
                          NSLog(@"Error: %@" , error);
@@ -155,7 +162,6 @@
         [task resume];
         
 }
-
     
 
                        
@@ -184,10 +190,28 @@
         }];
 }
 
+- (void)filterContentForSearchText:(NSString* ) searchText
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    _searchResults = [_arrayOfRecipes filteredArrayUsingPredicate:resultPredicate];
+}
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self updateFilteredMeals];
+}
 
-
-
+- (void) updateFilteredMeals
+{
+    
+    if([self.searchBar.text  length] > 0) {
+        [self filterContentForSearchText:_searchBar.text];
+    }
+    else{
+        _searchResults = _arrayOfRecipes;
+    }
+        [self.tableView reloadData];
+}
 @end
 
 
