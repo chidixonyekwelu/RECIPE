@@ -9,7 +9,7 @@
 #import "Parse/Parse.h"
 #import "SceneDelegate.h"
 
-@interface RegisterViewController ()
+@interface RegisterViewController () 
 @property (weak, nonatomic) IBOutlet UITextField *usersAge;
 @property (weak, nonatomic) IBOutlet UITextField *usersPassword;
 @property (weak, nonatomic) IBOutlet UITextField *usersUsername;
@@ -24,6 +24,7 @@
    
     newUser.username = self.usersUsername.text;
     newUser.password = self.usersPassword.text;
+    [newUser setValue:_usersAge.text forKey:@"Age"];
     
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {

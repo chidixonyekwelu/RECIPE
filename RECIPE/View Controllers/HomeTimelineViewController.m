@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
 @property (nonatomic, strong) NSArray *searchResults;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic, retain) NSDate *date;
 @property(readonly) NSUInteger count;
 
 @end
@@ -50,7 +51,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self fetchRecipes];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -68,7 +68,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return self.searchResults.count ;
+        return self.searchResults.count + 1 ;
 
     
 }
@@ -130,13 +130,13 @@
                    [self.arrayOfRecipes addObject:recipeObject];
                    NSLog(@"There is length😭😭😭😭😭");
                    NSLog(@"%@", self.arrayOfRecipes);
-                   [self updateFilteredMeals];
+                   [self.tableView reloadData];
                } 
                else {
                  
                    NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
                    self.arrayOfRecipes = recipes;
-                   [self updateFilteredMeals];
+                   [self.tableView reloadData];
                    
                }
                
@@ -162,9 +162,7 @@
         [task resume];
         
 }
-    
-
-                       
+                        
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
@@ -199,6 +197,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self updateFilteredMeals];
+    
 }
 
 - (void) updateFilteredMeals
@@ -211,6 +210,10 @@
         _searchResults = _arrayOfRecipes;
     }
         [self.tableView reloadData];
+}
+
+- (void) getTodaysDate {
+    NSDate* date = [NSDate date];
 }
 @end
 

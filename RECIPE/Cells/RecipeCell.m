@@ -14,10 +14,13 @@
 
 }
 - (IBAction)didTapFavorite:(id)sender {
+    if(self.recipe)
     [self.recipeLikeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
-    }
-    
-    
+}
+
+//    else{
+//    [self.likeTweet setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+
 
 
 @end

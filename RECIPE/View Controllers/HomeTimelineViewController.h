@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeTimelineViewController : UIViewController
 
++ (instancetype)date;
+
 @end
 
 NS_ASSUME_NONNULL_END
