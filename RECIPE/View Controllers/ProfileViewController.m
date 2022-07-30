@@ -8,6 +8,9 @@
 #import "ProfileViewController.h"
 
 @interface ProfileViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *profileEmailAddress;
+@property (weak, nonatomic) IBOutlet UITextField *profileLastName;
+@property (weak, nonatomic) IBOutlet UITextField *profileFirstName;
 
 @end
 

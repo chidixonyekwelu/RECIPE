@@ -16,6 +16,7 @@
 		EE578578288A051C0057C2B7 /* ButtonCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE578576288A051C0057C2B7 /* ButtonCellTableViewCell.m */; };
 		EE578579288A051C0057C2B7 /* ButtonCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */; };
 		EE5785822891BF5F0057C2B7 /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */; };
+		EE5785852894A3810057C2B7 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785842894A3810057C2B7 /* FavoritesViewController.m */; };
 		EE63DCFD287628260046554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFC287628260046554E /* AppDelegate.m */; };
 		EE63DD00287628260046554E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFF287628260046554E /* SceneDelegate.m */; };
 		EE63DD06287628260046554E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE63DD04287628260046554E /* Main.storyboard */; };
@@ -69,6 +70,8 @@
 		EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ButtonCellTableViewCell.xib; path = RECIPE/ButtonCellTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		EE5785802891BF5F0057C2B7 /* RecommendationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
 		EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
+		EE5785832894A3810057C2B7 /* FavoritesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
+		EE5785842894A3810057C2B7 /* FavoritesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		EE63DCF8287628260046554E /* RECIPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RECIPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63DCFB287628260046554E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE63DCFC287628260046554E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 			children = (
 				EE0A8EC62882133C00BBD9BA /* Keys.plist */,
 				EE63DD04287628260046554E /* Main.storyboard */,
+				EE5785832894A3810057C2B7 /* FavoritesViewController.h */,
+				EE5785842894A3810057C2B7 /* FavoritesViewController.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,
@@ -510,6 +515,7 @@
 				EE63DD442877B4850046554E /* RecipeCell.m in Sources */,
 				EE63DCFD287628260046554E /* AppDelegate.m in Sources */,
 				EE63DD35287629240046554E /* HomeTimelineViewController.m in Sources */,
+				EE5785852894A3810057C2B7 /* FavoritesViewController.m in Sources */,
 				EE63DD4128774BB20046554E /* ProfileViewController.m in Sources */,
 				EE63DD3B287641B60046554E /* LoginViewController.m in Sources */,
 				EE63DD4A2877B8310046554E /* ViewController.m in Sources */,

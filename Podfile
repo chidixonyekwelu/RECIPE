@@ -8,6 +8,7 @@ target 'RECIPE' do
   # Pods for RECIPE
   pod 'Parse'
   pod 'AFNetworking'
+  pod 'DateTools'
 
   target 'RECIPETests' do
     inherit! :search_paths

@@ -10,8 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RecommendationViewController : UIViewController
+//@property (nonatomic, strong) Recipe *recipe;
 
-+ (instancetype)date;
+- (instancetype)initWithStartDate:(NSDate *)startDate
+                          endDate:(NSDate *)endDate;
 
 @end
 

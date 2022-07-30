@@ -11,21 +11,27 @@
 #import "RecipeCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ButtonCellTableViewCell.h"
+#import "DateTools.h"
 
 @interface RecommendationViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *recommendationTableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) NSString *usersAge;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
 @property(readonly) NSUInteger count;
 @end
 
+
+
 @implementation RecommendationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"🥶🥶🥶🥶🥶 : %@",[PFUser.currentUser valueForKey:@"Age"]);
+    self.usersAge = [PFUser.currentUser valueForKey:@"age"];
     self.recommendationTableView.delegate = self;
     self.recommendationTableView.dataSource = self;
     
@@ -35,7 +41,9 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.recommendationTableView addSubview:self.refreshControl];
     
-    [self fetchRecipeUsingAge];
+//    [self fetchRecipeUsingAgeAndMaxCalories:maxcalories fetchRecipeUsingAgeAndMinCalories:mincalories];
+    
+    
     
 }
 
@@ -71,7 +79,8 @@
     
  
 }
-- (void)fetchRecipeUsingAge {
+- (void)fetchRecipeUsingAgeAndMaxCalories:(NSString *)maxcalories fetchRecipeUsingAgeAndMinCalories: (NSString *)mincalories {
+    NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/%@/information?includeNutrition=false&apiKey=56ffff1678d042b3aff0288b3be2e049" , maxcalories];
     NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/complexSearch?apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -94,10 +103,10 @@
             NSLog(@"DICTIONARY: %@", dataDictionary);
             [self.activityIndicator stopAnimating];
             
-//            if the users age is less than 20, show recipes with more than 100 calories,
-//                if the users age is 20 to 40, show recipes from 50 to 100 calories,
-//                if the users age is more than 50, show calories less than 50
-                    
+            if(self.usersAge.intValue < 30) && (self.maxcalories < 20){
+                maxcalories < 20;
+                NSLog(@"Here are the recipes that has less than 20 calories", _arrayOfRecipes);
+            }
             if (self.arrayOfRecipes.count != 0) {
                 RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
 
@@ -135,8 +144,35 @@
      
 }
 
-//- (void) get
-            
+- (void) getNSDates{
+//       NSDate *date= [NSDate date];
+       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+       [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSString *christmas;
+    NSString *summer;
+    NSString *thanksgiving;
+    NSString *easter;
+
+    christmas =  @"2022-12-01 to 2022-01-5";
+    summer = @"2022-06-01 to 2022-08-20";
+    thanksgiving = @"2022-11-24 to 2022-12-1";
+    easter = @"2022-04-09 to 2022-04-16";
+
+
+}
+        
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+
+    return YES;
+}
             
 
 @end

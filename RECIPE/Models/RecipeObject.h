@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *image;
 @property (nonatomic, strong) NSString *idnumber;
 @property (nonatomic, strong) NSString *ingredients;
+@property (nonatomic, strong) NSString *maxcalories;
+@property (nonatomic, strong) NSString *mincalories;
 @property (nonatomic, strong) NSString *instructions;
 @property (nonatomic, strong) NSString *idStr;
 @property (nonatomic) BOOL favorited;

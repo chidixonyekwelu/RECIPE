@@ -15,6 +15,8 @@
 @dynamic idnumber;
 @dynamic ingredients;
 @dynamic instructions;
+@dynamic maxcalories;
+@dynamic mincalories;
 
 + (nonnull NSString *)parseClassName {
     return @"RecipeObject";
@@ -30,6 +32,7 @@
         self.ingredients = dictionary[@"extendedIngredients"];
         NSLog(@"DICTIONARY: %@", dictionary);
         self.idnumber = [NSString stringWithFormat:@"%@", dictionary[@"id"]];
+//        self.maxcalories = dictionary[@]
         
         
     }

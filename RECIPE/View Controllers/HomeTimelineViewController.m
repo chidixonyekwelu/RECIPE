@@ -58,7 +58,7 @@
     [self.tableView addSubview:self.refreshControl];
     
 
-    
+    [self fetchRecipes];
     [self fetchParseData];
     
     [self.tableView reloadData];
@@ -85,7 +85,7 @@
         NSLog(@"%@: Recipes", recipe[@"name"]);
         cell.recipeName.text = recipe[@"name"];
         cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"price"]];
-//        NSString* formattedNumber = [NSString stringWithFormat:@"%@", self.recipe.price];
+//            NSString* formattedNumber = [NSString stringWithFormat:@"%@", ];
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
@@ -103,7 +103,7 @@
 
 
 - (void) fetchRecipes {
-    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3"];
+    NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=56ffff1678d042b3aff0288b3be2e049"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -130,13 +130,13 @@
                    [self.arrayOfRecipes addObject:recipeObject];
                    NSLog(@"There is length😭😭😭😭😭");
                    NSLog(@"%@", self.arrayOfRecipes);
-                   [self.tableView reloadData];
+                   [self updateFilteredMeals];
                } 
                else {
                  
                    NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
                    self.arrayOfRecipes = recipes;
-                   [self.tableView reloadData];
+                   [self updateFilteredMeals];
                    
                }
                
