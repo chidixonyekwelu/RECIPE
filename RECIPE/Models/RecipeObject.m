@@ -15,8 +15,6 @@
 @dynamic idnumber;
 @dynamic ingredients;
 @dynamic instructions;
-@dynamic maxcalories;
-@dynamic mincalories;
 
 + (nonnull NSString *)parseClassName {
     return @"RecipeObject";

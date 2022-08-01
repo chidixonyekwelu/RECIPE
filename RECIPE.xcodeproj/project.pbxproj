@@ -17,6 +17,7 @@
 		EE578579288A051C0057C2B7 /* ButtonCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */; };
 		EE5785822891BF5F0057C2B7 /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */; };
 		EE5785852894A3810057C2B7 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785842894A3810057C2B7 /* FavoritesViewController.m */; };
+		EE578588289703E30057C2B7 /* TabBarAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE578587289703E30057C2B7 /* TabBarAnimation.swift */; };
 		EE63DCFD287628260046554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFC287628260046554E /* AppDelegate.m */; };
 		EE63DD00287628260046554E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFF287628260046554E /* SceneDelegate.m */; };
 		EE63DD06287628260046554E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE63DD04287628260046554E /* Main.storyboard */; };
@@ -72,6 +73,8 @@
 		EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		EE5785832894A3810057C2B7 /* FavoritesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		EE5785842894A3810057C2B7 /* FavoritesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		EE578586289703E30057C2B7 /* RECIPE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RECIPE-Bridging-Header.h"; sourceTree = "<group>"; };
+		EE578587289703E30057C2B7 /* TabBarAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAnimation.swift; sourceTree = "<group>"; };
 		EE63DCF8287628260046554E /* RECIPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RECIPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63DCFB287628260046554E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE63DCFC287628260046554E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -159,23 +162,27 @@
 		EE578569288246140057C2B7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EE5785842894A3810057C2B7 /* FavoritesViewController.m */,
+				EE5785832894A3810057C2B7 /* FavoritesViewController.h */,
 				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
 				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE5785802891BF5F0057C2B7 /* RecommendationViewController.h */,
 				EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */,
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
+				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
 				EE578575288A051C0057C2B7 /* ButtonCellTableViewCell.h */,
 				EE578576288A051C0057C2B7 /* ButtonCellTableViewCell.m */,
 				EE578577288A051C0057C2B7 /* ButtonCellTableViewCell.xib */,
 				EE63DD3D2877463B0046554E /* RecipeDetailsViewController.m */,
-				EE63DD3C2877463B0046554E /* RecipeDetailsViewController.h */,
 				EE63DD39287641B60046554E /* LoginViewController.h */,
 				EE63DD3A287641B60046554E /* LoginViewController.m */,
+				EE578587289703E30057C2B7 /* TabBarAnimation.swift */,
 				EE63DD452877B7B60046554E /* RegisterViewController.h */,
 				EE63DD462877B7B60046554E /* RegisterViewController.m */,
 				EE63DD492877B8310046554E /* ViewController.m */,
 				EE63DD482877B8310046554E /* ViewController.h */,
+				EE578586289703E30057C2B7 /* RECIPE-Bridging-Header.h */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -239,8 +246,6 @@
 			children = (
 				EE0A8EC62882133C00BBD9BA /* Keys.plist */,
 				EE63DD04287628260046554E /* Main.storyboard */,
-				EE5785832894A3810057C2B7 /* FavoritesViewController.h */,
-				EE5785842894A3810057C2B7 /* FavoritesViewController.m */,
 				EE63DD07287628270046554E /* Assets.xcassets */,
 				EE63DD09287628270046554E /* LaunchScreen.storyboard */,
 				EE63DD0C287628270046554E /* Info.plist */,
@@ -342,6 +347,7 @@
 				TargetAttributes = {
 					EE63DCF7287628260046554E = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					EE63DD12287628270046554E = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -522,6 +528,7 @@
 				EE63DD472877B7B60046554E /* RegisterViewController.m in Sources */,
 				EE63DD50287CC55B0046554E /* Recipe.m in Sources */,
 				EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */,
+				EE578588289703E30057C2B7 /* TabBarAnimation.swift in Sources */,
 				EE5785822891BF5F0057C2B7 /* RecommendationViewController.m in Sources */,
 				EE63DD0E287628270046554E /* main.m in Sources */,
 				EE63DD00287628260046554E /* SceneDelegate.m in Sources */,
@@ -696,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -713,6 +721,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.RECIPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RECIPE/View Controllers/RECIPE-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -723,6 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -740,6 +752,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.RECIPE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RECIPE/View Controllers/RECIPE-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -748,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54D2C2093EB43D131AE0CAAF /* Pods-RECIPETests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -766,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1DA254A2DA5D8B1E58565BF /* Pods-RECIPETests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -784,6 +800,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC99DF746F6540180C3B09E /* Pods-RECIPE-RECIPEUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -800,6 +817,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 95AE10EC34D64ADB946E4FCC /* Pods-RECIPE-RECIPEUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

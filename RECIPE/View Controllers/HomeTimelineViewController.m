@@ -85,7 +85,7 @@
         NSLog(@"%@: Recipes", recipe[@"name"]);
         cell.recipeName.text = recipe[@"name"];
         cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"price"]];
-//            NSString* formattedNumber = [NSString stringWithFormat:@"%@", ];
+//        NSString* formattedNumber = [NSString stringWithFormat:@"%.02f", recipePrice];
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
