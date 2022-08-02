@@ -148,31 +148,49 @@
 
 
 - (void) getNSDates{
-//       NSDate *date= [NSDate date];
-       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-       [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
-    NSString *christmasStartDate;
-    NSString *christmasEndDate;
-    NSString *summerStartDate;
-    NSString *summerEndDate;
-    NSString *thanksgivingStartDate;
-    NSString *thanksgivingEndDate;
-    NSString *easterStartDate;
-    NSString *easterEndDate;
-
-   
-    christmasStartDate =  @"2022-12-01";
-    christmasEndDate = @"2022-01-5";
-    summerStartDate = @"2022-06-01";
-    summerEndDate = @"2022-08-20";
-    thanksgivingStartDate = @"2022-11-24";
-    thanksgivingEndDate = @"2022-12-1";
-    easterStartDate = @"2022-04-09";
-    easterEndDate = @"2022-04-16";
+    NSString *christmasStartDate = @"20221201";
+    NSDateFormatter *dateFormatforStartChristmas = [[NSDateFormatter alloc] init];
+    [dateFormatforStartChristmas setDateFormat:@"yyyyMMdd"];
+    NSDate *dateforStartChristmas = [dateFormatforStartChristmas dateFromString:christmasStartDate];
+    
+    NSString *christmasEndDate = @"2022015";
+    NSDateFormatter *dateFormatforEndChristmas = [[NSDateFormatter alloc] init];
+    [dateFormatforEndChristmas setDateFormat:@"yyyyMMdd"];
+    NSDate *dateforEndChristmas = [dateFormatforEndChristmas dateFromString:christmasStartDate];
+  
+    NSString *summerStartDate = @"20220601";
+    NSDateFormatter *dateFormatForStartSummer = [[NSDateFormatter alloc] init];
+    [dateFormatForStartSummer setDateFormat:@"yyyyMMdd"];
+    NSDate *dateForStartSummer = [dateFormatForStartSummer dateFromString:summerStartDate];
+    
+    NSString *summerEndDate = @"20220820";
+    NSDateFormatter *dateFormatForEndSummer = [[NSDateFormatter alloc] init];
+    [dateFormatForEndSummer setDateFormat:@"yyyyMMdd"];
+    NSDate *dateForEndSummer = [dateFormatForEndSummer dateFromString:summerEndDate];
+    
+    NSString *thanksgivingStartDate = @"20221124";
+    NSDateFormatter *dateFormatforStartThanksgiving = [[NSDateFormatter alloc] init];
+    [dateFormatforStartThanksgiving setDateFormat:@"yyyyMMdd"];
+    NSDate *dateforStartThanksgiving = [dateFormatforStartThanksgiving dateFromString:thanksgivingStartDate];
+    
+    NSString *thanksgivingEndDate = @"20221201";
+    NSDateFormatter *dateFormatForEndThanksgiving = [[NSDateFormatter alloc] init];
+    [dateFormatForEndThanksgiving setDateFormat:@"yyyyMMdd"];
+    NSDate *dateForEndThanksgiving = [dateFormatForEndThanksgiving dateFromString:thanksgivingEndDate];
+    
+    NSString *easterStartDate = @"20220409";
+    NSDateFormatter *dateFormatforStartEaster = [[NSDateFormatter alloc] init];
+    [dateFormatforStartEaster setDateFormat:@"yyyyMMdd"];
+    NSDate *dateforStartEaster = [dateFormatforStartEaster dateFromString:easterStartDate];
+    
+    NSString *easterEndDate = @"20220416";
+    NSDateFormatter *dateFormatForEndEaster = [[NSDateFormatter alloc] init];
+    [dateFormatForEndEaster setDateFormat:@"yyyyMMdd"];
+    NSDate *dateForEndEaster = [dateFormatForEndEaster dateFromString:summerEndDate];
+    
+    
 
 }
-
 
 + (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
 {
@@ -184,7 +202,6 @@
 
     return YES;
 }
-            
 
 @end
 
