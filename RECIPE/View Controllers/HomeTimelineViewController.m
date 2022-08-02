@@ -15,6 +15,7 @@
 #import "ViewController.h"
 #import "Parse/Parse.h"
 #import "UIImageView+AFNetworking.h"
+#import "RECIPE-Swift.h"
 
 @interface HomeTimelineViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSArray *searchResults;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
+//@property (nonatomic, strong) TabBarFormat *tabFormat;
 @property(readonly) NSUInteger count;
 
 @end
@@ -46,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     
+    self.navigationItem.titleView = self.searchBar;
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -84,8 +86,9 @@
         RecipeObject *recipe = self.searchResults[indexPath.row];
         NSLog(@"%@: Recipes", recipe[@"name"]);
         cell.recipeName.text = recipe[@"name"];
-        cell.recipePrice.text = [@"Price: $" stringByAppendingString:recipe[@"price"]];
-//        NSString* formattedNumber = [NSString stringWithFormat:@"%.02f", recipePrice];
+        double recipePrice = [recipe[@"price"] doubleValue];
+        NSString* formattedRecipePrice = [NSString stringWithFormat:@"%.02f", recipePrice];
+        cell.recipePrice.text = [@"Price: $" stringByAppendingString:formattedRecipePrice];
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
@@ -167,7 +170,7 @@
     UITableViewCell *myCell = sender;
     NSIndexPath *IndexPath = [self.tableView indexPathForCell:myCell];
     RecipeDetailsViewController *recipeDetailVC = [segue destinationViewController];
-    recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
+    recipeDetailVC.recipe = self.searchResults[IndexPath.row];
    
 }
  
@@ -214,6 +217,14 @@
 
 - (void) getTodaysDate {
     NSDate* date = [NSDate date];
+}
+
+self.tabFormat = [[TabBarFormat alloc] init];
+[self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
+[self.tabFormat changeUnselectedColor:self.tabBar];
+[self.tabFormat changeHeightOfTabbar:self.tabBar];
+- (void) tabBar:(UITabBar *)tabBar didSelectItem:(nonnull UITabBarItem *)item {
+    [self.tabFormat simpleAnimationWhenSelectItem: item];
 }
 @end
 

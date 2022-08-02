@@ -20,8 +20,6 @@
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, strong) NSString *usersAge;
-@property (nonatomic) NSInteger maxCalories;
-@property (nonatomic) NSInteger minCalories;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
 @property(readonly) NSUInteger count;
@@ -44,14 +42,27 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.recommendationTableView addSubview:self.refreshControl];
     
-//    [self fetchRecipeUsingAgeAndMaxCalories:_maxCalories fetchRecipeUsingAgeAndMinCalories:_minCalories fetchRecipeUsingQuery:foodkey];
-    
+    int maxCalories;
+    int minCalories;
+    if(self.usersAge.intValue <= 30)
+    {
+        minCalories = 400;
+        maxCalories = 600;
+        NSLog(@"Here are the recipes in that calories range", _arrayOfRecipes);
+    }
+    else{
+        minCalories = 100;
+        maxCalories = 300;
+    }
+
+   [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories];
+    [self.recommendationTableView reloadData];
     
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        return self.arrayOfRecipes.count ;
+        return self.arrayOfRecipes.count;
 
     
 }
@@ -74,8 +85,8 @@
     
     
  
-- (void)fetchRecipeUsingAgeAndMaxCalories:(NSString *)maxCalories fetchRecipeUsingAgeAndMinCalories: (NSString *)minCalories fetchRecipeUsingQuery:(NSString *)foodType {
-    NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/complexSearch?query=%@&minCalories=%@&number=2&maxCalories=%@&apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3" ,foodType, minCalories, maxCalories ];
+- (void)fetchRecipeUsingAgeAndMaxCalories:(int )maxCalories fetchRecipeUsingAgeAndMinCalories: (int) minCalories {
+    NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/complexSearch?minCalories=%d&number=2&maxCalories=%d&apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3" , minCalories, maxCalories];
     NSURL *url = [NSURL URLWithString:str];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -97,82 +108,83 @@
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"DICTIONARY: %@", dataDictionary);
             [self.activityIndicator stopAnimating];
-            
-            if(self.usersAge.intValue <= 30)
-                self.minCalories = 200;
-                self.maxCalories = 500;
-                NSLog(@"Here are the recipes in that calories range", _arrayOfRecipes);
-            }
-       
+             
             if (self.arrayOfRecipes.count != 0) {
-//                RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"recipes"][0]];
+                RecipeObject *recipeObject = [[RecipeObject alloc] initWithDictionary:dataDictionary[@"results"][0]];
 
-//                [self.arrayOfRecipes addObject:recipeObject];
+                [self.arrayOfRecipes addObject:recipeObject];
                 NSLog(@"There is length😭😭😭😭😭");
                 NSLog(@"%@", self.arrayOfRecipes);
             }
             else {
 
-//                NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"recipes"]];
-//                self.arrayOfRecipes = recipes;
+                NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"results"]];
+                self.arrayOfRecipes = recipes;
 
             }
-//
-//            RecipeObject *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
-//
-//            [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//                if (succeeded) {
-//                    NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
-//                    [self.recommendationTableView reloadData];
-//                  } else {
-//                      NSLog(@"Error: %@" , error);
-//                      NSLog(@"Failed to save, try again later😡🥶🥶🥶");
-//                  }
-//            }];
-//            NSLog(@"recipes");
-//
-//
-//            NSLog(@"ARRAY: %@", self.arrayOfRecipes);
-//            [self.recommendationTableView reloadData];
-//            [self.refreshControl endRefreshing];
-//        }
+            
+            RecipeObject *recipeInfo = self.arrayOfRecipes[self.arrayOfRecipes.count - 1];
+
+            [recipeInfo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    NSLog(@"Recipes been saved 🥶🥶🥶🥶🥶🥶🥶");
+                    [self.recommendationTableView reloadData];
+                  } else {
+                      NSLog(@"Error: %@" , error);
+                      NSLog(@"Failed to save, try again later😡🥶🥶🥶");
+                  }
+            }];
+            NSLog(@"results");
+
+
+            NSLog(@"ARRAY: %@", self.arrayOfRecipes);
+            [self.recommendationTableView reloadData];
+            [self.refreshControl endRefreshing];
+        }
     }];
      [task resume];
 //
 }
 
-//
-//- (void) getNSDates{
-////       NSDate *date= [NSDate date];
-//       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//       [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//
-//    NSString *christmas;
-//    NSString *summer;
-//    NSString *thanksgiving;
-//    NSString *easter;
-//
-//    christmas =  @"2022-12-01 to 2022-01-5";
-//    summer = @"2022-06-01 to 2022-08-20";
-//    thanksgiving = @"2022-11-24 to 2022-12-1";
-//    easter = @"2022-04-09 to 2022-04-16";
-//
-//
-//}
-//
-//
-//+ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
-//{
-//    if ([date compare:beginDate] == NSOrderedAscending)
-//        return NO;
-//
-//    if ([date compare:endDate] == NSOrderedDescending)
-//        return NO;
-//
-//    return YES;
-//}
+
+- (void) getNSDates{
+//       NSDate *date= [NSDate date];
+       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+       [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSString *christmasStartDate;
+    NSString *christmasEndDate;
+    NSString *summerStartDate;
+    NSString *summerEndDate;
+    NSString *thanksgivingStartDate;
+    NSString *thanksgivingEndDate;
+    NSString *easterStartDate;
+    NSString *easterEndDate;
+
+   
+    christmasStartDate =  @"2022-12-01";
+    christmasEndDate = @"2022-01-5";
+    summerStartDate = @"2022-06-01";
+    summerEndDate = @"2022-08-20";
+    thanksgivingStartDate = @"2022-11-24";
+    thanksgivingEndDate = @"2022-12-1";
+    easterStartDate = @"2022-04-09";
+    easterEndDate = @"2022-04-16";
+
+}
+
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+
+    return YES;
+}
             
-//}
 
 @end
 

@@ -13,8 +13,6 @@
 @dynamic image;
 @dynamic price;
 @dynamic idnumber;
-@dynamic ingredients;
-@dynamic instructions;
 
 + (nonnull NSString *)parseClassName {
     return @"RecipeObject";
@@ -25,12 +23,9 @@
     if (self) {
         self.name = dictionary[@"title"];
         self.image = dictionary[@"image"];
-        self.instructions = dictionary[@"instructions"];
         self.price = [NSString stringWithFormat:@"%f", [dictionary[@"pricePerServing"] floatValue] * [dictionary[@"servings"] floatValue] /100];
-        self.ingredients = dictionary[@"extendedIngredients"];
         NSLog(@"DICTIONARY: %@", dictionary);
         self.idnumber = [NSString stringWithFormat:@"%@", dictionary[@"id"]];
-//        self.maxcalories = dictionary[@]
         
         
     }
