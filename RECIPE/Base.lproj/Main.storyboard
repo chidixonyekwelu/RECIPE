@@ -397,32 +397,39 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="172" id="5r9-8F-G8J" customClass="RecipeCell">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="172"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="242" id="5r9-8F-G8J" customClass="RecipeCell">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="242"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5r9-8F-G8J" id="d2E-Ia-D6X">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="172"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="242"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-nj-TtU">
-                                                    <rect key="frame" x="0.0" y="10" width="130" height="138"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-nj-TtU">
+                                                    <rect key="frame" x="0.0" y="11" width="126" height="199"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="172" id="YhW-un-Nxr"/>
+                                                        <constraint firstAttribute="width" constant="154" id="siY-0b-zjz"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fR3-pB-gQC">
-                                                    <rect key="frame" x="146" y="11" width="197" height="55"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fR3-pB-gQC">
+                                                    <rect key="frame" x="146" y="11" width="208" height="106"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deQ-0T-HvO">
-                                                    <rect key="frame" x="146" y="53" width="228" height="53"/>
+                                                    <rect key="frame" x="146" y="103" width="228" height="111"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fR3-pB-gQC" firstAttribute="leading" secondItem="BeU-nj-TtU" secondAttribute="trailing" constant="8" symbolic="YES" id="0mf-VP-22r"/>
+                                                <constraint firstItem="BeU-nj-TtU" firstAttribute="top" secondItem="d2E-Ia-D6X" secondAttribute="top" constant="11" id="JNq-hq-mft"/>
+                                                <constraint firstAttribute="bottom" secondItem="BeU-nj-TtU" secondAttribute="bottom" constant="32" id="mFE-Nq-2lH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="recommendationRecipeName" destination="fR3-pB-gQC" id="7IP-4y-zSi"/>

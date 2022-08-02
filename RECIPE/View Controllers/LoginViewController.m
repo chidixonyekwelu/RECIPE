@@ -24,34 +24,28 @@
     if ([laContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
     
         if (error != NULL) {
-            // handle error
-            //[self showError:error];
+            
         } else {
     
             if (@available(iOS 11.0.1, *)) {
                 if (laContext.biometryType == LABiometryTypeFaceID) {
-                    //localizedReason = "Unlock using Face ID"
                     NSLog(@"FaceId support");
                 } else if (laContext.biometryType == LABiometryTypeTouchID) {
-                    //localizedReason = "Unlock using Touch ID"
                     NSLog(@"TouchId support");
                 } else {
-                    //localizedReason = "Unlock using Application Passcode"
                     NSLog(@"No Biometric support");
                 }
             } else {
-                // Fallback on earlier versions
             }
     
     
             [laContext evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:@"Test Reason" reply:^(BOOL success, NSError * _Nullable error) {
     
                 if (error != NULL) {
-                    // handle error
-                } else if (success) {
-                    // handle success response
-                } else {
-                    // handle false response
+                }
+                else if (success) {
+                }
+                else {
                 }
             }];
         }
@@ -77,6 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
 }
 
 - (void) showHomeTimeline {
@@ -85,7 +80,6 @@
     SceneDelegate *mySceneDelegate = (SceneDelegate *) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
     mySceneDelegate.window.rootViewController = tabBarController;
 }
-
 
 
 @end

@@ -8,9 +8,16 @@
 import UIKit
 
 @objcMembers
+
+class TabBarAnimation : NSObject {
+    func test() {
+        
+    }
+}
+@objcMembers
+
 class TabBarFormat : NSObject {
-    
-    func ChangeRadiusOfTabBarItem(_ tabBar: UITabBar)  {
+    func changeRadiusOfTabBarItem(_ tabBar: UITabBar)  {
         tabBar.layer.masksToBounds = true;
         tabBar.isTranslucent = true;
         tabBar.layer.cornerRadius = 50
@@ -18,11 +25,11 @@ class TabBarFormat : NSObject {
         
     }
     
-    func ChangeUnselectedColor(_ tabBar: UITabBar){
+    func changeUnselectedColor(_ tabBar: UITabBar){
         tabBar.unselectedItemTintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
     }
     
-    func ChangeHeightOfTabbar(_ tabBar: UITabBar){
+    func changeHeightOfTabbar(_ tabBar: UITabBar){
         
         if UIDevice().userInterfaceIdiom == .phone {
             var tabFrame            = tabBar.frame
@@ -31,7 +38,7 @@ class TabBarFormat : NSObject {
             tabBar.frame            = tabFrame
         }
     }
-    func SimpleAnnimationWhenSelectItem(_ item: UITabBarItem){
+    func simpleAnimationWhenSelectItem(_ item: UITabBarItem){
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
         
         let timeInterval: TimeInterval = 1.0

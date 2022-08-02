@@ -17,6 +17,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "RECIPE-Swift.h"
 
+
 @interface HomeTimelineViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) NSArray *searchResults;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
-//@property (nonatomic, strong) TabBarFormat *tabFormat;
+@property (nonatomic, strong) TabBarFormat *tabFormat;
 @property(readonly) NSUInteger count;
 
 @end
@@ -48,11 +49,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapResponder:)];
+    tapRecognizer.numberOfTapsRequired = 2;
+    tapRecognizer.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:tapRecognizer];
+   
     self.navigationItem.titleView = self.searchBar;
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+   
     
+    self.tabFormat = [[TabBarFormat alloc] init];
+    [self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
+    [self.tabFormat changeUnselectedColor:self.tabBar];
+    [self.tabFormat changeHeightOfTabbar:self.tabBar];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -67,6 +78,9 @@
     
 }
 
+- (void)tapResponder: (UITapGestureRecognizer *) sender{
+    NSLog(@"Double tap detected");
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -219,12 +233,9 @@
     NSDate* date = [NSDate date];
 }
 
-self.tabFormat = [[TabBarFormat alloc] init];
-[self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
-[self.tabFormat changeUnselectedColor:self.tabBar];
-[self.tabFormat changeHeightOfTabbar:self.tabBar];
 - (void) tabBar:(UITabBar *)tabBar didSelectItem:(nonnull UITabBarItem *)item {
     [self.tabFormat simpleAnimationWhenSelectItem: item];
+    
 }
 @end
 
