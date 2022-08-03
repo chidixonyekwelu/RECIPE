@@ -42,8 +42,20 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.recommendationTableView addSubview:self.refreshControl];
     
+    NSString *christmasStartDate = @"20221201";
+    NSString *christmasEndDate = @"2022015";
+    NSString *summerStartDate = @"20220601";
+    NSString *summerEndDate = @"20220820";
+    NSString *thanksgivingStartDate = @"20221124";
+    NSString *thanksgivingEndDate = @"20221201";
+    NSString *easterStartDate = @"20220409";
+    NSString *easterEndDate = @"20220416";
+    
+    
+    
     int maxCalories;
     int minCalories;
+    NSString *foodType;
     if(self.usersAge.intValue <= 30)
     {
         minCalories = 400;
@@ -54,8 +66,7 @@
         minCalories = 100;
         maxCalories = 300;
     }
-
-   [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories];
+    [self getNSDates];
     [self.recommendationTableView reloadData];
     
     
@@ -85,8 +96,8 @@
     
     
  
-- (void)fetchRecipeUsingAgeAndMaxCalories:(int )maxCalories fetchRecipeUsingAgeAndMinCalories: (int) minCalories {
-    NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/complexSearch?minCalories=%d&number=2&maxCalories=%d&apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3" , minCalories, maxCalories];
+- (void)fetchRecipeUsingAgeAndMaxCalories:(int )maxCalories fetchRecipeUsingAgeAndMinCalories: (int) minCalories fetchRecipeUsingAgeAndFoodType: (NSString *)foodType {
+    NSString *str = [NSString stringWithFormat:@"https://api.spoonacular.com/recipes/complexSearch?query=%@minCalories=%d&number=10&maxCalories=%d&apiKey=86a3c720d5e04f2ea73e3b2dd6b22eb3" , foodType, minCalories, maxCalories];
     NSURL *url = [NSURL URLWithString:str];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -143,56 +154,70 @@
         }
     }];
      [task resume];
-//
 }
 
 
 - (void) getNSDates{
     NSString *christmasStartDate = @"20221201";
-    NSDateFormatter *dateFormatforStartChristmas = [[NSDateFormatter alloc] init];
-    [dateFormatforStartChristmas setDateFormat:@"yyyyMMdd"];
-    NSDate *dateforStartChristmas = [dateFormatforStartChristmas dateFromString:christmasStartDate];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyyMMdd"];
+    NSDate *dateforStartChristmas = [dateFormat dateFromString:christmasStartDate];
     
-    NSString *christmasEndDate = @"2022015";
-    NSDateFormatter *dateFormatforEndChristmas = [[NSDateFormatter alloc] init];
-    [dateFormatforEndChristmas setDateFormat:@"yyyyMMdd"];
-    NSDate *dateforEndChristmas = [dateFormatforEndChristmas dateFromString:christmasStartDate];
+
+    NSDate *dateforEndChristmas = [dateFormat dateFromString:christmasStartDate];
   
     NSString *summerStartDate = @"20220601";
-    NSDateFormatter *dateFormatForStartSummer = [[NSDateFormatter alloc] init];
-    [dateFormatForStartSummer setDateFormat:@"yyyyMMdd"];
-    NSDate *dateForStartSummer = [dateFormatForStartSummer dateFromString:summerStartDate];
+    NSDate *dateForStartSummer = [dateFormat dateFromString:summerStartDate];
     
     NSString *summerEndDate = @"20220820";
-    NSDateFormatter *dateFormatForEndSummer = [[NSDateFormatter alloc] init];
-    [dateFormatForEndSummer setDateFormat:@"yyyyMMdd"];
-    NSDate *dateForEndSummer = [dateFormatForEndSummer dateFromString:summerEndDate];
+    NSDate *dateForEndSummer = [dateFormat dateFromString:summerEndDate];
     
     NSString *thanksgivingStartDate = @"20221124";
-    NSDateFormatter *dateFormatforStartThanksgiving = [[NSDateFormatter alloc] init];
-    [dateFormatforStartThanksgiving setDateFormat:@"yyyyMMdd"];
-    NSDate *dateforStartThanksgiving = [dateFormatforStartThanksgiving dateFromString:thanksgivingStartDate];
+    NSDate *dateforStartThanksgiving = [dateFormat dateFromString:thanksgivingStartDate];
     
     NSString *thanksgivingEndDate = @"20221201";
-    NSDateFormatter *dateFormatForEndThanksgiving = [[NSDateFormatter alloc] init];
-    [dateFormatForEndThanksgiving setDateFormat:@"yyyyMMdd"];
-    NSDate *dateForEndThanksgiving = [dateFormatForEndThanksgiving dateFromString:thanksgivingEndDate];
+    NSDate *dateForEndThanksgiving = [dateFormat dateFromString:thanksgivingEndDate];
     
     NSString *easterStartDate = @"20220409";
-    NSDateFormatter *dateFormatforStartEaster = [[NSDateFormatter alloc] init];
-    [dateFormatforStartEaster setDateFormat:@"yyyyMMdd"];
-    NSDate *dateforStartEaster = [dateFormatforStartEaster dateFromString:easterStartDate];
+    NSDate *dateforStartEaster = [dateFormat dateFromString:easterStartDate];
     
     NSString *easterEndDate = @"20220416";
-    NSDateFormatter *dateFormatForEndEaster = [[NSDateFormatter alloc] init];
-    [dateFormatForEndEaster setDateFormat:@"yyyyMMdd"];
-    NSDate *dateForEndEaster = [dateFormatForEndEaster dateFromString:summerEndDate];
+    NSDate *dateForEndEaster = [dateFormat dateFromString:summerEndDate];
     
+    int maxCalories;
+    int minCalories;
+    minCalories = 400;
+    maxCalories = 600;
+    if ([self date:self.date isBetweenDate:dateforStartEaster andDate:dateForEndEaster]){
+
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:@"Turkey"];
+    }
+    else{
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:nil];
+    }
     
+    if ([self date:self.date isBetweenDate:dateforStartThanksgiving andDate:dateForEndThanksgiving]){
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:@"Macaroni"];
+    }
+    else{
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:nil];
+    }
+    if ([self date:self.date isBetweenDate:dateForStartSummer andDate:dateForEndSummer]){
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:@"Burger"];
+    }
+    else{
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:nil];
+    }
+    if ([self date:self.date isBetweenDate:dateforStartChristmas andDate:dateforEndChristmas]){
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:@"Chicken"];
+    }
+    else{
+        [self fetchRecipeUsingAgeAndMaxCalories:maxCalories fetchRecipeUsingAgeAndMinCalories:minCalories fetchRecipeUsingAgeAndFoodType:nil];
+    }
 
 }
 
-+ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+- (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
 {
     if ([date compare:beginDate] == NSOrderedAscending)
         return NO;

@@ -258,9 +258,9 @@
             filePath = "RECIPE/View Controllers/RecommendationViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:fetchRecipeUsingAgeAndFoodType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -274,9 +274,9 @@
             filePath = "RECIPE/View Controllers/RecommendationViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:fetchRecipeUsingAgeAndFoodType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -290,9 +290,9 @@
             filePath = "RECIPE/View Controllers/RecommendationViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:fetchRecipeUsingAgeAndFoodType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -322,9 +322,9 @@
             filePath = "RECIPE/View Controllers/RecommendationViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-fetchRecipeUsingAgeAndMaxCalories:fetchRecipeUsingAgeAndMinCalories:fetchRecipeUsingAgeAndFoodType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
