@@ -147,7 +147,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaj-rr-V6g">
-                                <rect key="frame" x="124" y="529" width="182" height="38"/>
+                                <rect key="frame" x="128" y="738" width="182" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Sign Up">
@@ -158,6 +158,19 @@
                                     <action selector="signUpButton:" destination="qmv-9U-kIs" eventType="touchUpInside" id="Rok-E7-iCh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6W-JJ-Jna">
+                                <rect key="frame" x="144" y="526" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7oE-1f-wVN">
+                                <rect key="frame" x="144" y="587" width="158" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZU1-Ks-YE2"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
@@ -167,6 +180,7 @@
                         <outlet property="usersAge" destination="vbc-Qs-OjH" id="LNI-1A-7gc"/>
                         <outlet property="usersPassword" destination="cgS-ac-g6X" id="Kok-Cp-hoP"/>
                         <outlet property="usersUsername" destination="gnz-I3-pIQ" id="Xma-mx-PCB"/>
+                        <outlet property="usersWeight" destination="7oE-1f-wVN" id="nE6-bP-oI6"/>
                         <segue destination="9Qh-Cq-3S9" kind="presentation" id="31a-3A-L8f"/>
                     </connections>
                 </viewController>
@@ -310,10 +324,10 @@
             </objects>
             <point key="canvasLocation" x="2969.5652173913045" y="265.84821428571428"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Animation View Controller-->
         <scene sceneID="py9-41-7gn">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="f2y-no-VHF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="f2y-no-VHF" customClass="TabBarAnimationViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UrZ-Yl-kDP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -723,7 +737,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vaj-Mn-guC"/>
+        <segue reference="31a-3A-L8f"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="c pictire" width="300" height="245"/>

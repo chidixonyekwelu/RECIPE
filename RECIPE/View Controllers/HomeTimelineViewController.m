@@ -16,6 +16,7 @@
 #import "Parse/Parse.h"
 #import "UIImageView+AFNetworking.h"
 #import "RECIPE-Swift.h"
+#import "TabBarAnimationViewController.h"
 
 
 @interface HomeTimelineViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -27,6 +28,7 @@
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, strong) TabBarFormat *tabFormat;
+@property (nonatomic, strong) TabBarAnimationViewController *tabBar;
 @property(readonly) NSUInteger count;
 
 @end
@@ -60,10 +62,10 @@
     self.tableView.dataSource = self;
    
     
-//    self.tabFormat = [[TabBarFormat alloc] init];
-//    [self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
-//    [self.tabFormat changeUnselectedColor:self.tabBar];
-//    [self.tabFormat changeHeightOfTabbar:self.tabBar];
+    self.tabFormat = [[TabBarFormat alloc] init];
+    [self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
+    [self.tabFormat changeUnselectedColor:self.tabBar];
+    [self.tabFormat changeHeightOfTabbar:self.tabBar];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -221,10 +223,10 @@
 {
     
     if([self.searchBar.text  length] > 0) {
-            [self filterContentForSearchText:_searchBar.text];
+          [self filterContentForSearchText:_searchBar.text];
     }
     else{
-            _searchResults = _arrayOfRecipes;
+        _searchResults = _arrayOfRecipes;
     }
         [self.tableView reloadData];
 }

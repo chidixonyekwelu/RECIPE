@@ -10,6 +10,7 @@
 #import "SceneDelegate.h"
 
 @interface RegisterViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *usersWeight;
 @property (weak, nonatomic) IBOutlet UITextField *usersAge;
 @property (weak, nonatomic) IBOutlet UITextField *usersPassword;
 @property (weak, nonatomic) IBOutlet UITextField *usersUsername;
@@ -25,8 +26,10 @@
     newUser.username = self.usersUsername.text;
     newUser.password = self.usersPassword.text;
     [newUser setValue:_usersAge.text forKey:@"Age"];
-    NSLog(@"My age is: %@ 🤠", self.usersAge);
+    [newUser setValue:_usersWeight.text forKey:@"Weight"];
     
+    NSLog(@"My age is: %@ 🤠", self.usersAge);
+    NSLog(@"My weight is: %@ 🥶🥶🥶🥶 ");
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
