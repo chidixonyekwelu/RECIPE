@@ -18,6 +18,7 @@
 		EE5785822891BF5F0057C2B7 /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */; };
 		EE5785852894A3810057C2B7 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5785842894A3810057C2B7 /* FavoritesViewController.m */; };
 		EE57858B289AE2640057C2B7 /* TabBarAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE57858A289AE2640057C2B7 /* TabBarAnimationViewController.m */; };
+		EE57858E289C71210057C2B7 /* RecommendationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE57858D289C71210057C2B7 /* RecommendationDetailsViewController.m */; };
 		EE63DCFD287628260046554E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFC287628260046554E /* AppDelegate.m */; };
 		EE63DD00287628260046554E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE63DCFF287628260046554E /* SceneDelegate.m */; };
 		EE63DD06287628260046554E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE63DD04287628260046554E /* Main.storyboard */; };
@@ -75,6 +76,8 @@
 		EE5785842894A3810057C2B7 /* FavoritesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		EE578589289AE2640057C2B7 /* TabBarAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarAnimationViewController.h; sourceTree = "<group>"; };
 		EE57858A289AE2640057C2B7 /* TabBarAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarAnimationViewController.m; sourceTree = "<group>"; };
+		EE57858C289C71210057C2B7 /* RecommendationDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationDetailsViewController.h; sourceTree = "<group>"; };
+		EE57858D289C71210057C2B7 /* RecommendationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationDetailsViewController.m; sourceTree = "<group>"; };
 		EE63DCF8287628260046554E /* RECIPE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RECIPE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63DCFB287628260046554E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE63DCFC287628260046554E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				EE63DD3F28774BB20046554E /* ProfileViewController.h */,
 				EE63DD4028774BB20046554E /* ProfileViewController.m */,
 				EE5785802891BF5F0057C2B7 /* RecommendationViewController.h */,
+				EE57858D289C71210057C2B7 /* RecommendationDetailsViewController.m */,
+				EE57858C289C71210057C2B7 /* RecommendationDetailsViewController.h */,
 				EE5785812891BF5F0057C2B7 /* RecommendationViewController.m */,
 				EE63DD33287629240046554E /* HomeTimelineViewController.h */,
 				EE63DD34287629240046554E /* HomeTimelineViewController.m */,
@@ -529,6 +534,7 @@
 				EE63DD50287CC55B0046554E /* Recipe.m in Sources */,
 				EE63DD3E2877463B0046554E /* RecipeDetailsViewController.m in Sources */,
 				EE57858B289AE2640057C2B7 /* TabBarAnimationViewController.m in Sources */,
+				EE57858E289C71210057C2B7 /* RecommendationDetailsViewController.m in Sources */,
 				EE5785822891BF5F0057C2B7 /* RecommendationViewController.m in Sources */,
 				EE63DD0E287628270046554E /* main.m in Sources */,
 				EE63DD00287628260046554E /* SceneDelegate.m in Sources */,

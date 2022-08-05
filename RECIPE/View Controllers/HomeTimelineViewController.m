@@ -15,7 +15,6 @@
 #import "ViewController.h"
 #import "Parse/Parse.h"
 #import "UIImageView+AFNetworking.h"
-#import "RECIPE-Swift.h"
 #import "TabBarAnimationViewController.h"
 
 
@@ -27,7 +26,6 @@
 @property (nonatomic, strong) NSArray *searchResults;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
-@property (nonatomic, strong) TabBarFormat *tabFormat;
 @property (nonatomic, strong) TabBarAnimationViewController *tabBar;
 @property(readonly) NSUInteger count;
 
@@ -60,12 +58,6 @@
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-   
-    
-    self.tabFormat = [[TabBarFormat alloc] init];
-    [self.tabFormat changeRadiusOfTabBarItem:self.tabBar];
-    [self.tabFormat changeUnselectedColor:self.tabBar];
-    [self.tabFormat changeHeightOfTabbar:self.tabBar];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchRecipes)
@@ -235,10 +227,7 @@
     NSDate* date = [NSDate date];
 }
 
-- (void) tabBar:(UITabBar *)tabBar didSelectItem:(nonnull UITabBarItem *)item {
-    [self.tabFormat simpleAnimationWhenSelectItem: item];
-    
-}
+
 @end
 
 

@@ -18,7 +18,8 @@
     [self changeUnselectedColor];
     [self changeHeightOfTabbar];
     [self changeRadiusOfTabBarItem];
-    [self simpleAnimationWhenSelectItem:<#(UITabBarItem *)#>]
+    UITabBarItem *item;
+    [self simpleAnimationWhenSelectItem:item];
 }
 
 - (void) changeRadiusOfTabBarItem {
@@ -29,7 +30,7 @@
 }
 
 - (void) changeUnselectedColor {
-    UIColor *customColor = [[UIColor alloc] initWithRed:0.6893 green:0.5698 blue:0.6930 alpha:1];
+    UIColor *customColor = [[UIColor alloc] initWithRed:0.900 green:0.100 blue:0.100 alpha:1];
     self.tabBar.tintColor = customColor;
 }
 - (void) changeHeightOfTabbar {

@@ -29,7 +29,7 @@
     [newUser setValue:_usersWeight.text forKey:@"Weight"];
     
     NSLog(@"My age is: %@ 🤠", self.usersAge);
-    NSLog(@"My weight is: %@ 🥶🥶🥶🥶 ");
+//    NSLog(@"My weight is: %@" );
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
