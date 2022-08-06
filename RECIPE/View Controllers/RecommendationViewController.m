@@ -6,9 +6,12 @@
 //
 
 #import "RecommendationViewController.h"
+#import "RecommendationDetailsViewController.h"
 #import "HomeTimelineViewController.h"
 #import "RecipeObject.h"
 #import "RecipeCell.h"
+
+#import "Recipe.h"
 #import "UIImageView+AFNetworking.h"
 #import "ButtonCellTableViewCell.h"
 #import "DateTools.h"
@@ -20,7 +23,6 @@
 @property (nonatomic, strong) NSMutableArray *arrayOfRecipes;
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, strong) NSString *usersAge;
-@property (nonatomic, strong) NSString *usersWeight;
 @property(strong, nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) NSDate *date;
 @property(readonly) NSUInteger count;
@@ -44,24 +46,6 @@
     [self.refreshControl addTarget:self action:@selector(fetch)
                   forControlEvents:UIControlEventValueChanged];
     [self.recommendationTableView addSubview:self.refreshControl];
-    
-    int maxCalories;
-    int minCalories;
-    int maxFat;
-    int minFat;
-    NSString *foodType;
-    if(self.usersAge.intValue <= 30 && self.usersWeight.intValue <= 50 )
-    {
-        maxFat = 300;
-        minFat = 200;
-        minCalories = 400;
-        maxCalories = 600;
-        NSLog(@"Here are the recipes in that calories range", _arrayOfRecipes);
-    }
-    else{
-        minCalories = 100;
-        maxCalories = 300;
-    }
     [self fetchRecommendationsUsingDates];
     [self.recommendationTableView reloadData];
     
@@ -75,7 +59,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
-    RecipeObject *recipe = self.arrayOfRecipes[indexPath.row];
+    RecipeObject *recipe = self.searchResults[indexPath.row];
     NSLog(@"%@: Recipes", recipe[@"name"]);
     cell.recommendationRecipeName.text = recipe[@"name"];
     double recipePrice = [recipe[@"price"] doubleValue];
@@ -131,11 +115,13 @@
                 [self.arrayOfRecipes addObject:recipeObject];
                 NSLog(@"There is length😭😭😭😭😭");
                 NSLog(@"%@", self.arrayOfRecipes);
+                [self updateFilteredMeals];
             }
             else {
 
                 NSMutableArray *recipes = [RecipeObject recipesWithArray:dataDictionary[@"results"]];
                 self.arrayOfRecipes = recipes;
+                [self updateFilteredMeals];
 
             }
             
@@ -168,31 +154,33 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyyMMdd"];
     
-    NSDate *dateforStartChristmas = [dateFormat dateFromString:christmasStartDate];
-    NSDate *dateforEndChristmas = [dateFormat dateFromString:christmasStartDate];
-  
     NSString *summerStartDate = @"20220601";
-    NSDate *dateForStartSummer = [dateFormat dateFromString:summerStartDate];
     
     NSString *summerEndDate = @"20220820";
-    NSDate *dateForEndSummer = [dateFormat dateFromString:summerEndDate];
     
     NSString *thanksgivingStartDate = @"20221124";
-    NSDate *dateforStartThanksgiving = [dateFormat dateFromString:thanksgivingStartDate];
     
     NSString *thanksgivingEndDate = @"20221201";
-    NSDate *dateForEndThanksgiving = [dateFormat dateFromString:thanksgivingEndDate];
     
     NSString *easterStartDate = @"20220409";
-    NSDate *dateforStartEaster = [dateFormat dateFromString:easterStartDate];
     
     NSString *easterEndDate = @"20220416";
-    NSDate *dateForEndEaster = [dateFormat dateFromString:summerEndDate];
     
     int maxCalories;
     int minCalories;
     minCalories = 400;
     maxCalories = 600;
+    
+    if(self.usersAge.intValue <= 30 && self.usersWeight.intValue <= 50 )
+    {
+        minCalories = 400;
+        maxCalories = 600;
+        NSLog(@"Here are the recipes in that calories range", _arrayOfRecipes);
+    }
+    else{
+        minCalories = 100;
+        maxCalories = 300;
+    }
     
     
     if ([self date:self.date isBetweenDate:easterStartDate andDate:easterEndDate]){
@@ -232,6 +220,30 @@
         return NO;
 
     return YES;
+}
+
+- (void)filterContentForSearchText:(NSString* ) searchText
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    _searchResults = [_arrayOfRecipes filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self updateFilteredMeals];
+    
+}
+
+- (void) updateFilteredMeals
+{
+    
+    if([self.searchBar.text  length] > 0) {
+          [self filterContentForSearchText:_searchBar.text];
+    }
+    else{
+        _searchResults = _arrayOfRecipes;
+    }
+        [self.recommendationTableView reloadData];
 }
 
 @end

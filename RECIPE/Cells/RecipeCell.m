@@ -6,14 +6,20 @@
 //
 
 #import "RecipeCell.h"
+#import "SceneDelegate.h"
 
 @implementation RecipeCell
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 
 }
+
+
+
 - (IBAction)didTapFavorite:(id)sender {
+    
     [self.recipeLikeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
 }
 

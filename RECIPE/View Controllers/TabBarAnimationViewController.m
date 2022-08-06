@@ -42,6 +42,10 @@
     }
 }
 
+- (void) tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    [self simpleAnimationWhenSelectItem:item];
+}
 - (void) simpleAnimationWhenSelectItem:(UITabBarItem *)item {
     
     if([item valueForKey:@"view"]) {

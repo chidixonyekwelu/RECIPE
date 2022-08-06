@@ -52,7 +52,7 @@
               NSLog(@"DICTIONARY: %@", dataDictionary);
               self.recipeName.text = self.recipe.name;
               self.recipeInstructions.text = [[NSAttributedString alloc] initWithData:[dataDictionary[@"instructions"] dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil].string;
-              double recipePrice = [self.recipePrice.text doubleValue];
+              double recipePrice = [self.recipe.price doubleValue];
               NSString* formattedRecipePrice = [NSString stringWithFormat:@"%.02f", recipePrice];
               self.recipePrice.text = [@"Price: $" stringByAppendingString:formattedRecipePrice];
               NSString *URLString = self.recipe.image;

@@ -33,6 +33,15 @@
 
 @implementation HomeTimelineViewController{
 }
+
+- (IBAction)tapGestureRecognizer:(id)sender {
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapResponder:)];
+    tapRecognizer.numberOfTapsRequired = 2;
+    tapRecognizer.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:tapRecognizer];
+    NSLog(@"User double tapped");
+}
+
 - (IBAction)loadMoreButton:(id)sender {
     for (int i = 0; i < 10; i++)
         [self fetchRecipes];
@@ -49,6 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapResponder:)];
     tapRecognizer.numberOfTapsRequired = 2;
     tapRecognizer.numberOfTouchesRequired = 2;
@@ -90,6 +100,9 @@
         return cell;
     }
     else{
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapResponder:)];
+        tapRecognizer.numberOfTapsRequired = 2;
+        tapRecognizer.numberOfTouchesRequired = 2;
         RecipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecipeCell" forIndexPath:indexPath];
         RecipeObject *recipe = self.searchResults[indexPath.row];
         NSLog(@"%@: Recipes", recipe[@"name"]);
@@ -100,9 +113,8 @@
         NSString *URLString = recipe[@"image"];
         NSURL *url = [NSURL URLWithString:URLString];
         [cell.recipePicture setImageWithURL:url];
-        
-        
-        
+        [cell.recipePicture setUserInteractionEnabled:YES];
+        [cell.recipePicture addGestureRecognizer:tapRecognizer];
         
         return cell;
 
@@ -111,7 +123,6 @@
     
  
 }
-
 
 - (void) fetchRecipes {
     NSURL *url = [NSURL URLWithString:@"https://api.spoonacular.com/recipes/random?apiKey=56ffff1678d042b3aff0288b3be2e049"];
