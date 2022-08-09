@@ -203,8 +203,8 @@
                                                         <constraint firstAttribute="height" constant="172" id="gku-aI-qdS"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-1t-sWQ">
-                                                    <rect key="frame" x="162" y="23" width="192" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-1t-sWQ">
+                                                    <rect key="frame" x="162" y="23" width="212" height="82"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -256,6 +256,7 @@
                                                     <connections>
                                                         <action selector="loadMoreButton:" destination="JrG-Po-7Qg" eventType="touchUpInside" id="wH9-xv-8RG"/>
                                                         <outletCollection property="gestureRecognizers" destination="Q6Z-B0-deT" appends="YES" id="1T9-Hq-Kyr"/>
+                                                        <outletCollection property="gestureRecognizers" destination="Q6Z-B0-deT" appends="YES" id="Sdl-Mx-qNC"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -310,7 +311,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9L-gd-Qh7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Q6Z-B0-deT">
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Q6Z-B0-deT">
                     <connections>
                         <action selector="tapGestureRecognizer:" destination="JrG-Po-7Qg" id="Aem-1L-lIj"/>
                     </connections>
@@ -443,6 +444,7 @@
                                             <outlet property="recommendationRecipeImage" destination="BeU-nj-TtU" id="cib-MG-U9q"/>
                                             <outlet property="recommendationRecipeName" destination="fR3-pB-gQC" id="7IP-4y-zSi"/>
                                             <outlet property="recommendationRecipePrice" destination="deQ-0T-HvO" id="FhM-5f-gl1"/>
+                                            <segue destination="qEP-lg-CTc" kind="show" id="W3Z-5x-BYC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -564,14 +566,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykz-7r-WJ9">
-                                <rect key="frame" x="161" y="132" width="233" height="63"/>
+                                <rect key="frame" x="161" y="132" width="233" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFb-cp-scV">
-                                <rect key="frame" x="171" y="268" width="42" height="21"/>
+                                <rect key="frame" x="161" y="268" width="188" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -588,6 +590,7 @@
                         <viewLayoutGuide key="safeArea" id="8lN-BP-VLX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="v9d-DM-0GF"/>
                     <connections>
                         <outlet property="recommendationRecipeImage" destination="Y9t-mY-qZo" id="AaB-Vp-Dg9"/>
                         <outlet property="recommendationRecipeIngredients" destination="bKm-4t-NMj" id="XAf-46-Ttr"/>
@@ -598,7 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mth-SJ-EgU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4701.449275362319" y="686.38392857142856"/>
+            <point key="canvasLocation" x="5179.7101449275369" y="2161.6071428571427"/>
         </scene>
         <!--Profile-->
         <scene sceneID="MtG-os-Ob0">
@@ -666,7 +669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2z6-uF-tvp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4028.985507246377" y="1455.8035714285713"/>
+            <point key="canvasLocation" x="4020" y="1292"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Enl-Mc-pkn">

@@ -10,7 +10,6 @@
 #import "HomeTimelineViewController.h"
 #import "RecipeObject.h"
 #import "RecipeCell.h"
-
 #import "Recipe.h"
 #import "UIImageView+AFNetworking.h"
 #import "ButtonCellTableViewCell.h"
@@ -36,7 +35,6 @@
     [super viewDidLoad];
     NSLog(@"🥶🥶🥶🥶🥶 : %@",[PFUser.currentUser valueForKey:@"Age"]);
     self.usersAge = [PFUser.currentUser valueForKey:@"age"];
-    self.usersWeight = [PFUser.currentUser valueForKey:@"weight"];
     self.recommendationTableView.delegate = self;
     self.recommendationTableView.dataSource = self;
     self.navigationItem.titleView = self.searchBar;
@@ -171,15 +169,15 @@
     minCalories = 400;
     maxCalories = 600;
     
-    if(self.usersAge.intValue <= 30 && self.usersWeight.intValue <= 50 )
+    if(self.usersAge.intValue <= 30)
     {
-        minCalories = 400;
-        maxCalories = 600;
+        minCalories = 200;
+        maxCalories = 900;
         NSLog(@"Here are the recipes in that calories range", _arrayOfRecipes);
     }
     else{
         minCalories = 100;
-        maxCalories = 300;
+        maxCalories = 600;
     }
     
     
@@ -206,6 +204,13 @@
 
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *myCell = sender;
+    NSIndexPath *IndexPath = [self.recommendationTableView indexPathForCell:myCell];
+    RecommendationDetailsViewController *recipeDetailVC = [segue destinationViewController];
+    recipeDetailVC.recipe = self.arrayOfRecipes[IndexPath.row];
+   
+}
 - (BOOL)date:(NSDate*)date isBetweenDate:(NSString*)beginDateString andDate:(NSString*)endDateString
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

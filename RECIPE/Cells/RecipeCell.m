@@ -19,7 +19,6 @@
 
 
 - (IBAction)didTapFavorite:(id)sender {
-    
     [self.recipeLikeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
 }
 
