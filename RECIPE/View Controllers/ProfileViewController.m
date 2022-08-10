@@ -19,14 +19,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.profileLastName.text = PFUser.currentUser[@"Onyekwelu"];
-//    self.profileFirstName.text = PFUser.currentUser[@"Chidi"];
+    
+    self.profileLastName.text = @"Onyekwelu";
+    self.profileFirstName.text = @"Chidi";
+    self.profileEmailAddress.text = @"chidixonyekwelu@gmail.com";
 //    self.profileEmailAddress.text = PFUser.currentUser[@"chidixonyekwelu@gmail.com"];
 //    self.profileFirstName = [PFUser.currentUser valueForKey:@"First Name"];
-//    PFUser *newUser = [PFUser user];
-//    [newUser setValue:self.profileFirstName.text forKey:@"First Name"];
-//    [newUser setValue:self.profileLastName.text forKey:@"Last Name"];
-//    [PFUser.currentUser saveInBackground];
+    
+    PFUser *newUser = PFUser.currentUser;
+    [newUser setValue:self.profileFirstName.text forKey:@"firstName"];
+    [newUser setValue:self.profileLastName.text forKey:@"lastName"];
+    [newUser setValue:self.profileEmailAddress.text forKey:@"emailAddress"];
+    [newUser saveInBackground];
 
 }
     
